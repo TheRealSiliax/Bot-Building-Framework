@@ -4,25 +4,545 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Moderne Website mit KI-Chatbot Integration und dynamischem Sonnenuntergangs-Hintergrund">
-    <title>Website mit KI-Chatbot</title>
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles/main.css">
+    <title>Sunset Shimmer Waves</title>
     
     <!-- Fonts - Inter für moderne Typografie -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========================================
+           CSS RESET & BASE
+           ======================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #ff7a3d;
+            --color-primary-dark: #e65a1d;
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            font-size: 16px;
+            line-height: 1.6;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            /* Fallback Gradient */
+            background: radial-gradient(circle at 60% 45%, rgba(255,122,61,0.35), transparent 45%), 
+                        linear-gradient(180deg, #1a0f2e 0%, #5b245e 35%, #0b1630 70%, #060814 100%);
+        }
+
+        /* ========================================
+           WAVE BACKGROUND CANVAS
+           ======================================== */
+        #waveCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Fallback für CSS-Animation wenn WebGL nicht verfügbar */
+        .wave-fallback {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 60% 45%, rgba(255,122,61,0.35), transparent 45%), 
+                        linear-gradient(180deg, #1a0f2e 0%, #5b245e 35%, #0b1630 70%, #060814 100%);
+            animation: subtleShift 18s ease-in-out infinite;
+        }
+
+        @keyframes subtleShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* ========================================
+           HEADER & NAVIGATION
+           ======================================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 13, 46, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav__logo a {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav__menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav__menu a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav__menu a:hover {
+            color: white;
+            text-shadow: 0 0 20px rgba(255, 150, 50, 0.8);
+        }
+
+        .nav__toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav__toggle span {
+            width: 24px;
+            height: 2px;
+            background-color: white;
+        }
+
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 1rem;
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero__title {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            letter-spacing: -0.02em;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero__subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero__hint {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========================================
+           BUTTONS
+           ======================================== */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
+        .btn--glow {
+            background: linear-gradient(135deg, #ff7a3d 0%, #ff8a4a 100%);
+            color: white;
+            box-shadow: 0 4px 20px rgba(255, 122, 61, 0.4);
+        }
+
+        .btn--glow:hover {
+            background: linear-gradient(135deg, #ff8a4d 0%, #ff9a5a 100%);
+            box-shadow: 0 6px 30px rgba(255, 122, 61, 0.6);
+            transform: translateY(-3px);
+        }
+
+        /* ========================================
+           SECTIONS (Glass Effect)
+           ======================================== */
+        .section {
+            padding: 5rem 1rem;
+            position: relative;
+        }
+
+        .section--glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section--glass.section--alt {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section__title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .section__text {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        /* ========================================
+           SERVICE CARDS
+           ======================================== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 150, 50, 0.3);
+        }
+
+        .service-card__icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card__title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card__text {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* ========================================
+           CONTACT FORM
+           ======================================== */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: rgba(255, 122, 61, 0.6);
+            box-shadow: 0 0 20px rgba(255, 122, 61, 0.2);
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+
+        /* ========================================
+           CHATBOT WIDGET
+           ======================================== */
+        .chatbot {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 9999;
+        }
+
+        .chatbot__toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff7a3d 0%, #ff8a4a 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(255, 122, 61, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chatbot__toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(255, 122, 61, 0.6);
+        }
+
+        .chatbot__icon {
+            width: 28px;
+            height: 28px;
+        }
+
+        .chatbot__window {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 380px;
+            max-width: calc(100vw - 40px);
+            height: 500px;
+            background: rgba(10, 13, 46, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chatbot__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: linear-gradient(135deg, #ff7a3d 0%, #ff8a4a 100%);
+            color: white;
+        }
+
+        .chatbot__header h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .chatbot__close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .chatbot__messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .chatbot__message {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            line-height: 1.4;
+        }
+
+        .chatbot__message--user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, #ff7a3d 0%, #ff8a4a 100%);
+            color: white;
+        }
+
+        .chatbot__message--bot {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .chatbot__input {
+            display: flex;
+            padding: 0.75rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            gap: 0.5rem;
+        }
+
+        .chatbot__input input {
+            flex: 1;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .chatbot__input input:focus {
+            outline: none;
+            border-color: rgba(255, 122, 61, 0.6);
+        }
+
+        .chatbot__input button {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #ff7a3d 0%, #ff8a4a 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chatbot__input button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 768px) {
+            .nav__menu {
+                display: none;
+            }
+
+            .nav__toggle {
+                display: flex;
+            }
+
+            .hero__hint {
+                display: none;
+            }
+
+            .chatbot__window {
+                width: calc(100vw - 40px);
+                height: 70vh;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- WebGL Wave Background Canvas -->
-    <canvas id="waveCanvas" class="wave-background" aria-hidden="true"></canvas>
+    <canvas id="waveCanvas" aria-hidden="true"></canvas>
 
     <!-- Header -->
     <header class="header" id="header">
         <nav class="nav">
             <div class="nav__logo">
-                <a href="/">Logo</a>
+                <a href="/">Sunset Waves</a>
             </div>
             <ul class="nav__menu">
                 <li><a href="#home">Home</a></li>
@@ -40,13 +560,13 @@
 
     <!-- Main Content -->
     <main class="main">
-        <!-- Hero Section mit Wave Background -->
-        <section class="hero hero--transparent" id="home">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
             <div class="hero__content">
                 <h1 class="hero__title">Willkommen</h1>
                 <p class="hero__subtitle">Ihre moderne Website mit intelligenter KI-Unterstützung</p>
-                <p class="hero__hint">Bewegen Sie die Maus für den Sonnenuntergangs-Effekt</p>
-                <a href="#contact" class="btn btn--primary btn--glow">Jetzt starten</a>
+                <p class="hero__hint">✨ Bewegen Sie die Maus für den Sonnenuntergangs-Effekt</p>
+                <a href="#contact" class="btn btn--glow">Jetzt starten</a>
             </div>
         </section>
 
@@ -92,17 +612,17 @@
                 <form class="contact-form" id="contactForm">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" placeholder="Ihr Name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">E-Mail</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" placeholder="ihre@email.de" required>
                     </div>
                     <div class="form-group">
                         <label for="message">Nachricht</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <textarea id="message" name="message" rows="5" placeholder="Ihre Nachricht..." required></textarea>
                     </div>
-                    <button type="submit" class="btn btn--primary btn--glow">Absenden</button>
+                    <button type="submit" class="btn btn--glow">Absenden</button>
                 </form>
             </div>
         </section>
@@ -111,7 +631,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Website. Alle Rechte vorbehalten.</p>
+            <p>&copy; 2025 Sunset Waves. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
 
@@ -128,7 +648,9 @@
                 <button class="chatbot__close" id="chatbotClose" aria-label="Chat schließen">&times;</button>
             </div>
             <div class="chatbot__messages" id="chatbotMessages">
-                <!-- Chat-Nachrichten werden hier eingefügt -->
+                <div class="chatbot__message chatbot__message--bot">
+                    Hallo! Ich bin Ihr KI-Assistent. Wie kann ich Ihnen helfen?
+                </div>
             </div>
             <form class="chatbot__input" id="chatbotForm">
                 <input type="text" id="chatbotInput" placeholder="Nachricht eingeben..." autocomplete="off">
@@ -141,7 +663,566 @@
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="scripts/main.js" type="module"></script>
+    <!-- ========================================
+         WEBGL WAVE BACKGROUND SHADER
+         Basierend auf der JSON-Spezifikation:
+         - FBM Noise mit 5 Oktaven
+         - Domain Warping
+         - Blinn-Phong Specular
+         - Fresnel-Effekte
+         - Vignette, Film Grain, Bloom
+         ======================================== -->
+    <script>
+    (function() {
+        'use strict';
+        
+        // ========================================
+        // CONFIGURATION (from JSON spec)
+        // ========================================
+        const CONFIG = {
+            waves: {
+                octaves: 5,
+                baseFrequency: 1.35,
+                lacunarity: 2.05,
+                gain: 0.55,
+                choppiness: 1.25,
+                domainWarpStrength: 0.35,
+                speed: 0.12,
+                direction: [0.85, 0.25]
+            },
+            lighting: {
+                sunPosition: [0.62, 0.44],
+                shininess: 180,
+                fresnelPower: 4.5,
+                fresnelIntensity: 0.55
+            },
+            postProcess: {
+                vignetteStrength: 0.25,
+                filmGrainAmount: 0.035,
+                bloomThreshold: 0.75,
+                bloomIntensity: 0.22
+            },
+            interaction: {
+                smoothing: 0.12,
+                influenceRadius: 0.22,
+                shimmerBoost: 1.35,
+                sparkleThreshold: 0.68
+            }
+        };
+
+        // ========================================
+        // VERTEX SHADER
+        // ========================================
+        const VERTEX_SHADER = `
+            attribute vec2 a_position;
+            void main() {
+                gl_Position = vec4(a_position, 0.0, 1.0);
+            }
+        `;
+
+        // ========================================
+        // FRAGMENT SHADER (Full Implementation)
+        // ========================================
+        const FRAGMENT_SHADER = `
+            #ifdef GL_ES
+            precision highp float;
+            #endif
+
+            uniform vec2 u_resolution;
+            uniform float u_time;
+            uniform vec2 u_pointer;
+            uniform float u_pointerInfluence;
+
+            // === PALETTE (from JSON spec) ===
+            const vec3 SKY_TOP = vec3(0.102, 0.059, 0.180);       // #1a0f2e
+            const vec3 SKY_MID = vec3(0.357, 0.141, 0.369);       // #5b245e
+            const vec3 SKY_HORIZON = vec3(1.0, 0.478, 0.239);     // #ff7a3d
+            
+            const vec3 WATER_DEEP = vec3(0.024, 0.031, 0.078);    // #060814
+            const vec3 WATER_MID = vec3(0.043, 0.086, 0.188);     // #0b1630
+            const vec3 WATER_RIM = vec3(0.075, 0.145, 0.290);     // #13254a
+            
+            const vec3 SUN_CORE = vec3(1.0, 0.839, 0.631);        // #ffd6a1
+            const vec3 SUN_GLOW = vec3(1.0, 0.541, 0.290);        // #ff8a4a
+
+            // === CONSTANTS ===
+            const float PI = 3.14159265359;
+            const float HORIZON_LINE = 0.42;
+            const float PERSPECTIVE_STRENGTH = 1.15;
+
+            // === NOISE FUNCTIONS ===
+            
+            // Hash function for pseudo-random
+            float hash(vec2 p) {
+                vec3 p3 = fract(vec3(p.xyx) * 0.1031);
+                p3 += dot(p3, p3.yzx + 33.33);
+                return fract((p3.x + p3.y) * p3.z);
+            }
+            
+            // 2D Value Noise
+            float noise(vec2 p) {
+                vec2 i = floor(p);
+                vec2 f = fract(p);
+                
+                // Quintic interpolation for smoother results
+                vec2 u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+                
+                float a = hash(i);
+                float b = hash(i + vec2(1.0, 0.0));
+                float c = hash(i + vec2(0.0, 1.0));
+                float d = hash(i + vec2(1.0, 1.0));
+                
+                return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+            }
+            
+            // Domain Warping
+            vec2 domainWarp(vec2 p, float time) {
+                float warpStrength = 0.35;
+                float warpFreq = 0.9;
+                
+                float wx = noise(p * warpFreq + time * 0.1);
+                float wy = noise(p * warpFreq + vec2(5.2, 1.3) + time * 0.1);
+                
+                return p + vec2(wx, wy) * warpStrength;
+            }
+            
+            // FBM (Fractal Brownian Motion) with 5 octaves
+            float fbm(vec2 p, float time) {
+                float value = 0.0;
+                float amplitude = 0.5;
+                float frequency = 1.35;  // baseFrequency
+                float lacunarity = 2.05;
+                float gain = 0.55;
+                
+                // Apply domain warp
+                p = domainWarp(p, time);
+                
+                // 5 octaves as per spec
+                for (int i = 0; i < 5; i++) {
+                    // Wave direction animation
+                    vec2 dir = vec2(0.85, 0.25);
+                    vec2 animatedP = p + dir * time * 0.12 * float(i + 1) * 0.3;
+                    
+                    value += amplitude * noise(animatedP * frequency);
+                    
+                    frequency *= lacunarity;
+                    amplitude *= gain;
+                }
+                
+                // Apply choppiness
+                value = pow(abs(value), 1.25);
+                
+                return value;
+            }
+            
+            // Secondary swell
+            float secondarySwell(vec2 p, float time) {
+                vec2 dir = vec2(-0.2, 0.95);
+                float speed = 0.06;
+                float amplitude = 0.35;
+                
+                vec2 animatedP = p + dir * time * speed;
+                return noise(animatedP * 2.0) * amplitude;
+            }
+
+            // === WATER SURFACE ===
+            
+            float getWaveHeight(vec2 uv, float time) {
+                float height = fbm(uv * 3.0, time);
+                height += secondarySwell(uv * 2.0, time);
+                return height;
+            }
+            
+            // Calculate normals from height field
+            vec3 calcNormal(vec2 uv, float time) {
+                float eps = 0.0025;
+                
+                float hL = getWaveHeight(uv - vec2(eps, 0.0), time);
+                float hR = getWaveHeight(uv + vec2(eps, 0.0), time);
+                float hD = getWaveHeight(uv - vec2(0.0, eps), time);
+                float hU = getWaveHeight(uv + vec2(0.0, eps), time);
+                
+                float normalStrength = 1.35;
+                vec3 normal = normalize(vec3(
+                    (hL - hR) * normalStrength,
+                    (hD - hU) * normalStrength,
+                    1.0
+                ));
+                
+                return normal;
+            }
+
+            // === LIGHTING ===
+            
+            // Fresnel effect
+            float fresnel(vec3 viewDir, vec3 normal, float power) {
+                return pow(1.0 - max(dot(viewDir, normal), 0.0), power);
+            }
+            
+            // Blinn-Phong specular
+            float blinnPhong(vec3 lightDir, vec3 viewDir, vec3 normal, float shininess) {
+                vec3 halfDir = normalize(lightDir + viewDir);
+                float specAngle = max(dot(halfDir, normal), 0.0);
+                return pow(specAngle, shininess);
+            }
+
+            // === POST PROCESSING ===
+            
+            // Vignette effect
+            float vignette(vec2 uv, float strength, float radius) {
+                float dist = length(uv - 0.5);
+                return 1.0 - smoothstep(radius, radius + 0.5, dist) * strength;
+            }
+            
+            // Film grain
+            float filmGrain(vec2 uv, float time) {
+                return (hash(uv * 1000.0 + time * 100.0) - 0.5) * 2.0;
+            }
+            
+            // Simple bloom approximation
+            vec3 cheapBloom(vec3 color, float threshold, float intensity) {
+                float brightness = dot(color, vec3(0.2126, 0.7152, 0.0722));
+                float bloom = max(0.0, brightness - threshold);
+                return color + color * bloom * intensity;
+            }
+
+            // === MAIN ===
+            
+            void main() {
+                vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+                float aspect = u_resolution.x / u_resolution.y;
+                
+                // Aspect-corrected coordinates
+                vec2 uvAspect = vec2(uv.x * aspect, uv.y);
+                
+                // Pointer position (normalized and aspect-corrected)
+                vec2 pointer = u_pointer / u_resolution.xy;
+                pointer.x *= aspect;
+                
+                float time = u_time;
+                
+                // === SKY GRADIENT ===
+                vec3 sky = mix(SKY_TOP, SKY_MID, smoothstep(1.0, 0.5, uv.y));
+                sky = mix(sky, SKY_HORIZON, smoothstep(0.55, HORIZON_LINE, uv.y));
+                
+                // Sun glow in sky
+                vec2 sunPos = vec2(0.62 * aspect, 0.44);
+                float sunDist = length(uvAspect - sunPos);
+                float sunGlow = exp(-sunDist * 5.0) * 0.75;
+                sky += SUN_GLOW * sunGlow;
+                
+                // Sun core
+                float sunCore = smoothstep(0.08, 0.02, sunDist);
+                sky = mix(sky, SUN_CORE, sunCore * 0.8);
+                
+                // === WATER ===
+                float waterMask = smoothstep(HORIZON_LINE + 0.02, HORIZON_LINE - 0.02, uv.y);
+                
+                if (waterMask > 0.01) {
+                    // Perspective distortion for water
+                    float perspective = pow(1.0 - uv.y / HORIZON_LINE, PERSPECTIVE_STRENGTH);
+                    vec2 waterUV = uvAspect * (1.0 + perspective * 2.0);
+                    
+                    // Wave height
+                    float waveHeight = getWaveHeight(waterUV, time);
+                    
+                    // Surface normal
+                    vec3 normal = calcNormal(waterUV, time);
+                    
+                    // View and light directions
+                    vec3 viewDir = normalize(vec3(0.0, 0.0, 1.0));
+                    vec3 lightDir = normalize(vec3(sunPos.x - uvAspect.x, sunPos.y - uv.y, 0.5));
+                    
+                    // Base water color with depth gradient
+                    vec3 waterColor = mix(WATER_DEEP, WATER_MID, perspective);
+                    waterColor = mix(waterColor, WATER_RIM, waveHeight * 0.5);
+                    
+                    // Fresnel effect
+                    float fres = fresnel(viewDir, normal, 4.5) * 0.55;
+                    waterColor = mix(waterColor, SKY_HORIZON * 0.5, fres);
+                    
+                    // Specular highlight (sun reflection)
+                    float spec = blinnPhong(lightDir, viewDir, normal, 180.0);
+                    
+                    // Sun reflection stretch along wave direction
+                    float reflectionStretch = 1.35;
+                    float fadeWithDist = 1.0 - uv.y * 1.1;
+                    spec *= fadeWithDist * reflectionStretch;
+                    
+                    // === POINTER INTERACTION (SHIMMER) ===
+                    float pointerDist = length(uvAspect - pointer);
+                    float pointerInfluence = smoothstep(0.22, 0.0, pointerDist) * u_pointerInfluence;
+                    
+                    // Shimmer boost near pointer
+                    float shimmerBoost = 1.0 + pointerInfluence * 1.35;
+                    
+                    // Micro-flicker effect
+                    float flicker = 1.0 + sin(time * 6.0 + waveHeight * 20.0) * 0.12 * pointerInfluence;
+                    
+                    // Sparkle on wave crests near pointer
+                    float sparkle = smoothstep(0.68, 0.9, waveHeight) * pointerInfluence * 0.9;
+                    
+                    // Apply specular with shimmer
+                    vec3 specColor = mix(SUN_GLOW, SUN_CORE, spec);
+                    waterColor += specColor * spec * shimmerBoost * flicker;
+                    waterColor += SUN_CORE * sparkle * flicker;
+                    
+                    // Blend sky and water
+                    sky = mix(sky, waterColor, waterMask);
+                }
+                
+                // === POST PROCESSING ===
+                
+                // Vignette
+                float vig = vignette(uv, 0.25, 0.75);
+                sky *= vig;
+                
+                // Film grain
+                float grain = filmGrain(uv, time) * 0.035;
+                sky += grain;
+                
+                // Cheap bloom
+                sky = cheapBloom(sky, 0.75, 0.22);
+                
+                // Clamp highlights for accessibility
+                sky = min(sky, vec3(0.92));
+                
+                gl_FragColor = vec4(sky, 1.0);
+            }
+        `;
+
+        // ========================================
+        // WEBGL SETUP
+        // ========================================
+        
+        const canvas = document.getElementById('waveCanvas');
+        if (!canvas) {
+            console.error('Canvas not found');
+            return;
+        }
+        
+        // Try WebGL2 first, fallback to WebGL1
+        let gl = canvas.getContext('webgl2');
+        let isWebGL2 = true;
+        
+        if (!gl) {
+            gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            isWebGL2 = false;
+        }
+        
+        if (!gl) {
+            console.warn('WebGL not supported, using CSS fallback');
+            canvas.style.display = 'none';
+            const fallback = document.createElement('div');
+            fallback.className = 'wave-fallback';
+            document.body.insertBefore(fallback, document.body.firstChild);
+            return;
+        }
+        
+        console.log('WebGL' + (isWebGL2 ? '2' : '1') + ' initialized');
+
+        // Compile shader
+        function compileShader(source, type) {
+            const shader = gl.createShader(type);
+            gl.shaderSource(shader, source);
+            gl.compileShader(shader);
+            
+            if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                console.error('Shader error:', gl.getShaderInfoLog(shader));
+                gl.deleteShader(shader);
+                return null;
+            }
+            return shader;
+        }
+
+        // Create program
+        const vertexShader = compileShader(VERTEX_SHADER, gl.VERTEX_SHADER);
+        const fragmentShader = compileShader(FRAGMENT_SHADER, gl.FRAGMENT_SHADER);
+        
+        if (!vertexShader || !fragmentShader) {
+            console.error('Failed to compile shaders');
+            return;
+        }
+
+        const program = gl.createProgram();
+        gl.attachShader(program, vertexShader);
+        gl.attachShader(program, fragmentShader);
+        gl.linkProgram(program);
+
+        if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+            console.error('Program link error:', gl.getProgramInfoLog(program));
+            return;
+        }
+
+        gl.useProgram(program);
+
+        // Create fullscreen quad
+        const positionBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+            -1, -1,  1, -1,  -1, 1,
+            -1,  1,  1, -1,   1, 1
+        ]), gl.STATIC_DRAW);
+
+        const positionLoc = gl.getAttribLocation(program, 'a_position');
+        gl.enableVertexAttribArray(positionLoc);
+        gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
+
+        // Get uniform locations
+        const uniforms = {
+            resolution: gl.getUniformLocation(program, 'u_resolution'),
+            time: gl.getUniformLocation(program, 'u_time'),
+            pointer: gl.getUniformLocation(program, 'u_pointer'),
+            pointerInfluence: gl.getUniformLocation(program, 'u_pointerInfluence')
+        };
+
+        // ========================================
+        // STATE
+        // ========================================
+        
+        let width = 0, height = 0;
+        let pointerX = 0, pointerY = 0;
+        let targetPointerX = 0, targetPointerY = 0;
+        let isRunning = true;
+        let reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Resize handler
+        function resize() {
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            width = window.innerWidth;
+            height = window.innerHeight;
+            
+            canvas.width = width * dpr;
+            canvas.height = height * dpr;
+            canvas.style.width = width + 'px';
+            canvas.style.height = height + 'px';
+            
+            gl.viewport(0, 0, canvas.width, canvas.height);
+            gl.uniform2f(uniforms.resolution, canvas.width, canvas.height);
+            
+            // Initialize pointer to center-right (where sun is)
+            if (pointerX === 0 && pointerY === 0) {
+                pointerX = targetPointerX = width * 0.62;
+                pointerY = targetPointerY = height * 0.56;
+            }
+        }
+
+        // Pointer handlers
+        function onPointerMove(e) {
+            targetPointerX = e.clientX || (e.touches && e.touches[0].clientX) || targetPointerX;
+            targetPointerY = e.clientY || (e.touches && e.touches[0].clientY) || targetPointerY;
+        }
+
+        window.addEventListener('resize', resize);
+        window.addEventListener('mousemove', onPointerMove);
+        window.addEventListener('touchmove', onPointerMove, { passive: true });
+        window.addEventListener('touchstart', onPointerMove, { passive: true });
+
+        // Visibility change
+        document.addEventListener('visibilitychange', () => {
+            isRunning = !document.hidden;
+            if (isRunning) requestAnimationFrame(render);
+        });
+
+        // Initial resize
+        resize();
+
+        // ========================================
+        // RENDER LOOP
+        // ========================================
+        
+        function render(timestamp) {
+            if (!isRunning) return;
+            
+            // Time in seconds, slower if reduced motion
+            const timeSpeed = reducedMotion ? 0.35 : 1.0;
+            const time = timestamp * 0.001 * timeSpeed;
+            
+            // Smooth pointer interpolation
+            const smoothing = reducedMotion ? 0.05 : 0.12;
+            pointerX += (targetPointerX - pointerX) * smoothing;
+            pointerY += (targetPointerY - pointerY) * smoothing;
+            
+            // Update uniforms
+            gl.uniform1f(uniforms.time, time);
+            gl.uniform2f(uniforms.pointer, pointerX * (canvas.width / width), 
+                        (height - pointerY) * (canvas.height / height)); // Flip Y
+            gl.uniform1f(uniforms.pointerInfluence, reducedMotion ? 0.5 : 1.0);
+            
+            // Draw
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
+            
+            requestAnimationFrame(render);
+        }
+
+        requestAnimationFrame(render);
+        console.log('Sunset Shimmer Waves initialized');
+
+    })();
+
+    // ========================================
+    // CHATBOT FUNCTIONALITY
+    // ========================================
+    (function() {
+        const toggle = document.getElementById('chatbotToggle');
+        const window_ = document.getElementById('chatbotWindow');
+        const close = document.getElementById('chatbotClose');
+        const form = document.getElementById('chatbotForm');
+        const input = document.getElementById('chatbotInput');
+        const messages = document.getElementById('chatbotMessages');
+
+        if (!toggle || !window_) return;
+
+        toggle.addEventListener('click', () => {
+            const isHidden = window_.hidden;
+            window_.hidden = !isHidden;
+            if (!isHidden) return;
+            setTimeout(() => input && input.focus(), 100);
+        });
+
+        close && close.addEventListener('click', () => {
+            window_.hidden = true;
+        });
+
+        form && form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = input.value.trim();
+            if (!text) return;
+            
+            // Add user message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chatbot__message chatbot__message--user';
+            userMsg.textContent = text;
+            messages.appendChild(userMsg);
+            
+            input.value = '';
+            
+            // Simulate bot response
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'chatbot__message chatbot__message--bot';
+                botMsg.textContent = 'Vielen Dank für Ihre Nachricht! Im Live-Modus würde ich Ihnen eine KI-generierte Antwort geben.';
+                messages.appendChild(botMsg);
+                messages.scrollTop = messages.scrollHeight;
+            }, 1000);
+            
+            messages.scrollTop = messages.scrollHeight;
+        });
+    })();
+
+    // ========================================
+    // NAVIGATION
+    // ========================================
+    (function() {
+        const toggle = document.getElementById('navToggle');
+        const menu = document.querySelector('.nav__menu');
+        
+        if (toggle && menu) {
+            toggle.addEventListener('click', () => {
+                menu.classList.toggle('active');
+            });
+        }
+    })();
+    </script>
 </body>
 </html>
