@@ -62,3 +62,8 @@ credentials.json
 # Projekt-spezifisch
 Agentnetwork/*.pdf
 
+# Website - sensible Daten
+website/config/.env
+website/config/.env.local
+website/config/.env.production
+

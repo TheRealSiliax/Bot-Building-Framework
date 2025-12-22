@@ -1,0 +1,131 @@
+/* ========================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   ======================================== */
+
+:root {
+    /* ----------------------------------------
+       COLORS
+       ---------------------------------------- */
+    
+    /* Primary Colors */
+    --color-primary: #2563eb;
+    --color-primary-light: #3b82f6;
+    --color-primary-dark: #1d4ed8;
+    
+    /* Secondary Colors */
+    --color-secondary: #7c3aed;
+    --color-secondary-light: #8b5cf6;
+    --color-secondary-dark: #6d28d9;
+    
+    /* Accent Colors */
+    --color-accent: #06b6d4;
+    --color-success: #22c55e;
+    --color-warning: #f59e0b;
+    --color-error: #ef4444;
+    
+    /* Neutral Colors */
+    --color-text: #1f2937;
+    --color-text-light: #6b7280;
+    --color-text-muted: #9ca3af;
+    
+    --color-background: #ffffff;
+    --color-background-alt: #f9fafb;
+    --color-background-dark: #111827;
+    
+    --color-border: #e5e7eb;
+    --color-border-light: #f3f4f6;
+    
+    /* ----------------------------------------
+       TYPOGRAPHY
+       ---------------------------------------- */
+    
+    /* Font Families */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-secondary: 'Poppins', sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    
+    /* Font Sizes */
+    --font-size-xs: 0.75rem;    /* 12px */
+    --font-size-sm: 0.875rem;   /* 14px */
+    --font-size-base: 1rem;     /* 16px */
+    --font-size-lg: 1.125rem;   /* 18px */
+    --font-size-xl: 1.25rem;    /* 20px */
+    --font-size-xxl: 1.5rem;    /* 24px */
+    --font-size-xxxl: 2rem;     /* 32px */
+    --font-size-display: 3rem;  /* 48px */
+    
+    /* ----------------------------------------
+       SPACING
+       ---------------------------------------- */
+    
+    --spacing-xs: 0.25rem;   /* 4px */
+    --spacing-sm: 0.5rem;    /* 8px */
+    --spacing-md: 1rem;      /* 16px */
+    --spacing-lg: 1.5rem;    /* 24px */
+    --spacing-xl: 2rem;      /* 32px */
+    --spacing-xxl: 4rem;     /* 64px */
+    --spacing-xxxl: 6rem;    /* 96px */
+    
+    /* ----------------------------------------
+       LAYOUT
+       ---------------------------------------- */
+    
+    --container-max-width: 1200px;
+    --container-padding: 1rem;
+    
+    /* ----------------------------------------
+       BORDERS & RADIUS
+       ---------------------------------------- */
+    
+    --border-radius-sm: 0.25rem;  /* 4px */
+    --border-radius: 0.5rem;      /* 8px */
+    --border-radius-lg: 1rem;     /* 16px */
+    --border-radius-xl: 1.5rem;   /* 24px */
+    --border-radius-full: 9999px;
+    
+    /* ----------------------------------------
+       SHADOWS
+       ---------------------------------------- */
+    
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    
+    /* ----------------------------------------
+       TRANSITIONS
+       ---------------------------------------- */
+    
+    --transition-fast: 150ms ease;
+    --transition-normal: 300ms ease;
+    --transition-slow: 500ms ease;
+    
+    /* ----------------------------------------
+       Z-INDEX
+       ---------------------------------------- */
+    
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-fixed: 300;
+    --z-modal-backdrop: 400;
+    --z-modal: 500;
+    --z-popover: 600;
+    --z-tooltip: 700;
+}
+
+/* ----------------------------------------
+   DARK MODE VARIABLES
+   ---------------------------------------- */
+
+[data-theme="dark"] {
+    --color-text: #f9fafb;
+    --color-text-light: #d1d5db;
+    --color-text-muted: #9ca3af;
+    
+    --color-background: #111827;
+    --color-background-alt: #1f2937;
+    
+    --color-border: #374151;
+    --color-border-light: #4b5563;
+}
+

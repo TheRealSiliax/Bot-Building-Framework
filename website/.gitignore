@@ -1,0 +1,38 @@
+# Umgebungsvariablen (sensible Daten!)
+.env
+.env.local
+.env.production
+
+# API-Keys und Secrets
+*.key
+*.pem
+secrets.json
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build-Ausgabe
+build/
+dist/
+.cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporäre Dateien
+*.tmp
+*.bak
+

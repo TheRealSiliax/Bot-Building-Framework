@@ -1,0 +1,66 @@
+{
+    "page": "homepage",
+    "version": "1.0",
+    "sections": [
+        {
+            "id": "hero",
+            "type": "hero",
+            "props": {
+                "title": "Willkommen auf unserer Website",
+                "subtitle": "Ihre moderne Lösung mit intelligenter KI-Unterstützung",
+                "ctaText": "Jetzt starten",
+                "ctaLink": "#contact",
+                "backgroundType": "gradient"
+            },
+            "styles": {
+                "background": "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
+                "textColor": "#ffffff",
+                "minHeight": "100vh"
+            }
+        },
+        {
+            "id": "about",
+            "type": "content",
+            "props": {
+                "title": "Über uns",
+                "content": "Platzhalter für Über-uns-Inhalt"
+            }
+        },
+        {
+            "id": "services",
+            "type": "grid",
+            "props": {
+                "title": "Unsere Services",
+                "columns": 3,
+                "items": []
+            }
+        },
+        {
+            "id": "chatbot",
+            "type": "widget",
+            "props": {
+                "enabled": true,
+                "position": "bottom-right",
+                "welcomeMessage": "Hallo! Wie kann ich Ihnen helfen?"
+            }
+        },
+        {
+            "id": "contact",
+            "type": "form",
+            "props": {
+                "title": "Kontakt",
+                "fields": [
+                    { "name": "name", "type": "text", "label": "Name", "required": true },
+                    { "name": "email", "type": "email", "label": "E-Mail", "required": true },
+                    { "name": "message", "type": "textarea", "label": "Nachricht", "required": true }
+                ]
+            }
+        }
+    ],
+    "theme": {
+        "primaryColor": "#2563eb",
+        "secondaryColor": "#7c3aed",
+        "fontFamily": "Inter, sans-serif"
+    }
+}
+

@@ -1,0 +1,39 @@
+{
+    "site": {
+        "name": "Website Name",
+        "description": "Beschreibung der Website",
+        "language": "de",
+        "timezone": "Europe/Berlin"
+    },
+    "chatbot": {
+        "enabled": true,
+        "welcomeMessage": "Hallo! Wie kann ich Ihnen helfen?",
+        "position": "bottom-right",
+        "theme": "light",
+        "autoOpen": false,
+        "autoOpenDelay": 5000
+    },
+    "contact": {
+        "email": "kontakt@example.com",
+        "phone": "+49 123 456789",
+        "address": {
+            "street": "Musterstraße 1",
+            "city": "Berlin",
+            "zip": "10115",
+            "country": "Deutschland"
+        }
+    },
+    "social": {
+        "facebook": "",
+        "twitter": "",
+        "instagram": "",
+        "linkedin": "",
+        "youtube": ""
+    },
+    "features": {
+        "darkMode": true,
+        "analytics": false,
+        "newsletter": false
+    }
+}
+
