@@ -26,17 +26,20 @@ lernbot_framework/
 ├── templates/
 │   ├── script_vorlage_komplett.md  # 📄 Alle Templates in einem Dokument
 │   └── scripts/               # Einzelne Script-Vorlagen
-│       ├── meta_template.md   # Dokument-Metadaten
-│       ├── task_template.md   # Aufgaben-Blöcke
-│       ├── rubric_template.md # Bewertungskriterien
-│       ├── model_template.md  # Musterlösungen
-│       ├── debrief_template.md# Reflexion/Transfer
-│       └── system_prompt_base.md # Basis-System-Prompt
+├── projekte/                  # 📁 DEINE BOT-PROJEKTE
+│   ├── _vorlage/              # Kopierbare Projekt-Vorlage
+│   │   ├── 01_material/       # Unterrichtsmaterial ablegen
+│   │   ├── 02_analyse/        # Material-Analyse speichern
+│   │   ├── 03_scripts/        # Generierte Scripts speichern
+│   │   ├── 04_system_prompt/  # Finaler Prompt speichern
+│   │   ├── 05_quality/        # Quality-Reports speichern
+│   │   └── 06_export/         # Export-Versionen speichern
+│   └── {{dein_projekt}}/      # Deine eigenen Projekte
 ├── processes/                 # Workflow-Definitionen
 │   └── bot_creation.md        # Haupt-Erstellungsprozess
 ├── sops/                      # Schritt-für-Schritt-Anleitungen
 │   └── material_intake.md     # Material-Aufnahme
-├── examples/                  # Deine Projekte
+├── examples/                  # Beispiel-Outputs
 └── roles.yaml                 # Rollendefinitionen
 ```
 
@@ -79,14 +82,21 @@ OUTPUT: Einsatzbereiter Lernbot-System-Prompt
 
 **Ausführliche Anleitung:** [guides/quickstart.md](guides/quickstart.md)
 
-### Kurzversion
+### Neues Projekt anlegen
 
-1. **Material vorbereiten**: In `docs/Vorlagen/{{Projekt}}/` ablegen + `_meta.yaml` erstellen
-2. **Analysieren**: Material-Analyst mit Material aufrufen
-3. **Scripts generieren**: Analyse an Script-Generator übergeben
-4. **Prompt bauen**: Scripts mit Prompt-Builder kombinieren
-5. **Validieren**: Mit Quality-Checker prüfen
-6. **Einsetzen**: System-Prompt in LLM-Plattform kopieren ✓
+```powershell
+# Projekt-Vorlage kopieren
+Copy-Item -Recurse "lernbot_framework/projekte/_vorlage" "lernbot_framework/projekte/MEIN_PROJEKT"
+```
+
+### Workflow
+
+1. **Material vorbereiten**: In `projekte/MEIN_PROJEKT/01_material/` ablegen + `_meta.yaml` ausfüllen
+2. **Analysieren**: Material-Analyst → Ergebnis in `02_analyse/` speichern
+3. **Scripts generieren**: Script-Generator → Ergebnis in `03_scripts/` speichern
+4. **Prompt bauen**: Prompt-Builder → Ergebnis in `04_system_prompt/` speichern
+5. **Validieren**: Quality-Checker → Report in `05_quality/` speichern
+6. **Exportieren**: Finalen Prompt in `06_export/` kopieren und einsetzen ✓
 
 ### Ressourcen
 

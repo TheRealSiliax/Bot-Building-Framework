@@ -1,0 +1,58 @@
+# ============================================
+# BOT-PROJEKT KONFIGURATION
+# ============================================
+# Fülle diese Datei aus, bevor du mit der Analyse beginnst.
+# Alle {{PLATZHALTER}} müssen ersetzt werden.
+# ============================================
+
+# === PROJEKT-INFORMATIONEN ===
+projekt:
+  name: "{{Projektname, z.B. Wareneinkauf_Hotel}}"
+  erstellt_am: "{{YYYY-MM-DD}}"
+  erstellt_von: "{{Dein Name}}"
+  version: "v1.0"
+
+# === BOT-KONFIGURATION ===
+bot:
+  name: "{{Bot-Name, z.B. LernBuddy, SIMcoach}}"
+  tonalitaet: "freundlich"          # Optionen: freundlich | formal | motivierend
+  sprachniveau: "B1"                # Optionen: B1 | B2 | C1
+  standard_modus: "Schüler*innen-Modus"
+
+# === KURS-INFORMATIONEN ===
+kurs:
+  fach: "{{Fachbereich, z.B. Gastronomie, BWL, IT}}"
+  modul: "{{Modulname, z.B. Warenwirtschaft}}"
+  zielgruppe: "{{z.B. Berufsschüler*innen Gastronomie, 2. Lehrjahr}}"
+  voraussetzungen: "{{Benötigtes Vorwissen}}"
+
+# === ZEITRAHMEN ===
+zeitrahmen:
+  dauer_gesamt: "{{Gesamtdauer in Minuten, z.B. 90}}"
+  anzahl_phasen: "{{Geschätzte Anzahl, z.B. 4}}"
+
+# === LERNZIELE ===
+lernziele:
+  hauptziel: "{{Was sollen die Lernenden am Ende können?}}"
+  teilziele:
+    - "{{Teilziel 1}}"
+    - "{{Teilziel 2}}"
+    - "{{Teilziel 3}}"
+
+# === MATERIAL-INVENTAR ===
+# Liste alle Dateien auf, die du in diesem Ordner abgelegt hast.
+materialien:
+  - datei: "{{Dateiname_1.pdf}}"
+    typ: "{{Aufgabenblatt|Rezept|Tabelle|Hintergrund|Bewertung}}"
+    beschreibung: "{{Kurzbeschreibung}}"
+    wichtigkeit: "{{Kern|Ergänzend|Optional}}"
+  
+  - datei: "{{Dateiname_2.docx}}"
+    typ: "{{Typ}}"
+    beschreibung: "{{Beschreibung}}"
+    wichtigkeit: "{{Wichtigkeit}}"
+
+# === NOTIZEN ===
+notizen: |
+  {{Hier kannst du zusätzliche Notizen zum Material eintragen.
+  Z.B. besondere Hinweise, bekannte Probleme, etc.}}
