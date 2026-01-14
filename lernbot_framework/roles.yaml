@@ -1,0 +1,73 @@
+version: 0.1
+framework: lernbot
+description: Rollen für die Erstellung von Lernassistenz-Bots
+
+roles:
+  - id: material_analyst
+    name: Material-Analyst
+    purpose: Analysiert Unterrichtsmaterialien und extrahiert strukturierte Informationen für die Script-Generierung.
+    responsibilities:
+      - Dokument-Parsing (PDF, Word, Excel, MD)
+      - Extraktion von Lernzielen und Kompetenzen
+      - Identifikation von Aufgabenstrukturen
+      - Erkennung von Bewertungskriterien
+      - Kategorisierung von Ressourcen/Materialien
+    inputs:
+      - Rohes Unterrichtsmaterial (PDF, DOCX, XLSX, MD, TXT)
+      - Optionale Metadaten (Fach, Zielgruppe, Zeitrahmen)
+    outputs:
+      - Strukturierte Material-Analyse
+      - Extrahierte Lernziele
+      - Aufgaben-Kandidaten
+      - Ressourcen-Inventar
+
+  - id: script_generator
+    name: Script-Generator
+    purpose: Transformiert analysierte Materialien in maschinenlesbare Script-Formate.
+    responsibilities:
+      - Erstellung von TASK-Scripts
+      - Erstellung von RUBRIC-Scripts
+      - Erstellung von MODEL-Scripts (Musterlösungen)
+      - Erstellung von DEBRIEF-Scripts
+      - Konsistente ID-Vergabe und Referenzierung
+    inputs:
+      - Material-Analyse vom Material-Analyst
+      - Script-Templates
+      - Didaktische Vorgaben
+    outputs:
+      - Vollständige Script-Blöcke (TASK, RUBRIC, MODEL, DEBRIEF)
+      - Referenz-Mapping (welches Material → welcher Task)
+
+  - id: prompt_builder
+    name: Prompt-Builder
+    purpose: Kombiniert generierte Scripts zu einem finalen, einsatzbereiten System-Prompt.
+    responsibilities:
+      - Zusammenführung aller Script-Typen
+      - Integration der Base-System-Prompt-Vorlage
+      - Platzhalter-Ersetzung
+      - Format-Validierung
+    inputs:
+      - Generierte Scripts (TASK, RUBRIC, MODEL, DEBRIEF)
+      - System-Prompt-Basis-Template
+      - Bot-Konfiguration (Name, Tonalität, Modus)
+    outputs:
+      - Finaler System-Prompt (einsatzbereit)
+      - Dokumentation der verwendeten Komponenten
+
+  - id: quality_checker
+    name: Quality-Checker
+    purpose: Validiert die Qualität und Konsistenz aller generierten Artefakte.
+    responsibilities:
+      - Konsistenzprüfung (Referenzen, IDs)
+      - Vollständigkeitsprüfung (alle Pflichtfelder)
+      - Didaktische Qualitätsprüfung
+      - Maschinenlesbarkeits-Test
+    inputs:
+      - Generierte Scripts
+      - Finaler System-Prompt
+      - Qualitätskriterien
+    outputs:
+      - Validierungsbericht
+      - Fehler-/Warnungsliste
+      - Verbesserungsvorschläge
+      - Freigabe-Status
