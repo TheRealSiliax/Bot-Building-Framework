@@ -1,58 +1,67 @@
-# 📝 03_scripts — Generierte Scripts
+# 03_scripts - Generierte Script-Blöcke
 
-Hier speicherst du die **generierten Script-Blöcke**.
-
-## Was gehört hierher?
-
-- `scripts_komplett.md` — Alle Script-Blöcke in einem Dokument
-
-## Script-Typen
-
-| Block-Typ | Beschreibung |
-|-----------|--------------|
-| META | Dokument-Metadaten |
-| PHASE | Ablaufphasen |
-| RESOURCE | Material-Referenzen |
-| TASK | Aufgaben mit Scaffolds |
-| RUBRIC | Bewertungskriterien |
-| MODEL | Musterlösungen |
-| DEBRIEF | Reflexion & Transfer |
-
-## Scripts generieren
-
-### Prompt für Script-Generator
-
-```markdown
-# Auftrag: Script-Generierung
-
-Basierend auf der folgenden Material-Analyse, generiere alle Script-Blöcke.
-
-## Material-Analyse
-{{Hier die Analyse aus 02_analyse/material_analyse.md einfügen}}
+**Projekt:** Tagung im Hotel Dock 03
+**Generiert:** 2026-01-14
+**Status:** ✅ Vollständig
 
 ---
 
-Generiere:
-1. META-Block
-2. PHASE-Blöcke
-3. RESOURCE-Blöcke
-4. TASK-Blöcke (mit Scaffolds)
-5. RUBRIC-Blöcke
-6. MODEL-Blöcke (falls möglich)
-7. DEBRIEF-Block
+## Inhalt
 
-Verwende die Block-Syntax: [BLOCK]...[/BLOCK]
-Stelle sicher, dass alle IDs eindeutig und Referenzen gültig sind.
-```
+| Datei | Beschreibung | Status |
+|-------|--------------|--------|
+| `meta_block.md` | Bot-Konfiguration und Metadaten | ✅ |
+| `phase_blocks.md` | 5 Phasen (P0-P4) | ✅ |
+| `task_blocks.md` | 4 Aufgaben (T0-T3) | ✅ |
+| `rubric_blocks.md` | 4 Bewertungsrubriken | ✅ |
+| `debrief_block.md` | Debriefing-Struktur | ✅ |
 
-## Checkliste
+---
 
-- [ ] Script-Generator ausgeführt
-- [ ] Scripts als `scripts_komplett.md` gespeichert
-- [ ] Alle Block-Typen vorhanden
-- [ ] IDs eindeutig und Referenzen gültig
-- [ ] Keine unerwünschten Platzhalter
+## Übersicht der Blöcke
+
+### Phasen
+
+| ID | Name | Tasks |
+|----|------|-------|
+| P0_BRIEF | Briefing / Startlayout | T0_1 |
+| P1_BEDARF | Bedarf ermitteln | T1_1 |
+| P2_BESTAND | Bestand abgleichen | T2_1 |
+| P3_ANGEBOT | Angebote vergleichen | T3_1 |
+| P4_DEBRIEF | Debriefing | - |
+
+### Aufgaben
+
+| ID | Name | Rubrik |
+|----|------|--------|
+| T0_1_AUFTRAGSKLAERUNG | Auftragsklärung | RB_T0_1 |
+| T1_1_BEDARF | Warenanforderung | RB_T1_1 |
+| T2_1_BESTAND | Bestandsabgleich | RB_T2_1 |
+| T3_1_ANGEBOT | Angebotsvergleich | RB_T3_1 |
+
+---
+
+## Besonderheiten
+
+### Recherche-Funktion
+
+Der Bot hat Internetzugang und kann:
+- Rezepte recherchieren (z.B. Möhrensuppe)
+- Lieferanten im Raum Hamburg suchen
+
+Entsprechende Hinweise sind in den Tasks eingebaut.
+
+### Feedback-Timing
+
+- **Erst-Ausgabe:** Lernziele → Aufgabe → Eingabeaufforderung
+- **Nach 1. Versuch:** Hints, Scaffolds, Rubrik-Feedback
+
+---
 
 ## Nächster Schritt
 
-Wenn Scripts vollständig → **Phase 4: System-Prompt**
+→ **Prompt-Builder** starten: System-Prompt aus diesen Scripts assemblieren
+
+```
+projekte/Beispiel_Tagung_Dock03/04_system_prompt/
+```

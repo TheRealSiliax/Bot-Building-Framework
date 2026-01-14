@@ -7,11 +7,12 @@
 | Phase | Status | Datum |
 |-------|--------|-------|
 | 1. Material | ✅ Fertig | 2026-01-14 |
-| 2. Analyse | ⬜ Offen | - |
-| 3. Scripts | ⬜ Offen | - |
-| 4. System-Prompt | ⬜ Offen | - |
+| 2. Analyse | ✅ Fertig | 2026-01-14 |
+| 3. Scripts | ✅ Fertig | 2026-01-14 |
+| 4. System-Prompt | ✅ Fertig | 2026-01-14 |
 | 5. Quality | ⬜ Offen | - |
 | 6. Export | ⬜ Offen | - |
+| 7. Test | ⬜ Offen | - |
 
 **Legende:** ⬜ Offen | 🔄 In Arbeit | ✅ Fertig
 
