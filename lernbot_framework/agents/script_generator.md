@@ -11,11 +11,25 @@ Transformiert die Material-Analyse in maschinenlesbare Script-Formate (TASK, RUB
 - Didaktisch sinnvolle Scaffolding-Strukturen
 - Maschinenlesbare Formate für LLM-Verarbeitung
 
+## Projektstruktur-Integration
+
+```
+projekte/{{PROJEKT}}/
+├── 01_material/           
+│   └── _meta.yaml         ← Bot-Konfiguration lesen
+├── 02_analyse/            ← EINGABE: material_analyse.md lesen
+│   └── material_analyse.md
+└── 03_scripts/            ← AUSGABE: scripts_komplett.md speichern
+    └── scripts_komplett.md
+```
+
+**Templates referenzieren**: `lernbot_framework/templates/scripts/`
+
 ## Eingaben
 
-- Material-Analyse vom Material-Analyst
-- Script-Templates (aus `templates/scripts/`)
-- Didaktische Vorgaben (Feedback-Level, Bloom-Stufen, etc.)
+- **Analyse**: `projekte/{{PROJEKT}}/02_analyse/material_analyse.md`
+- **Konfiguration**: `projekte/{{PROJEKT}}/01_material/_meta.yaml`
+- **Templates**: `templates/scripts/` (für Block-Formate)
 
 ## Constraints
 

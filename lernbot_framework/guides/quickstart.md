@@ -6,18 +6,53 @@ Willkommen! Diese Anleitung führt dich Schritt für Schritt durch die Erstellun
 
 ## 📋 Übersicht
 
-| Schritt | Was du tust | Zeitaufwand |
-|---------|-------------|-------------|
-| 1 | Material vorbereiten | 10-15 Min |
-| 2 | Material analysieren | 15-30 Min |
-| 3 | Scripts generieren | 30-60 Min |
-| 4 | System-Prompt bauen | 10-20 Min |
-| 5 | Qualität prüfen | 10-15 Min |
-| **Gesamt** | | **~1,5-2,5 Std** |
+| Schritt | Was du tust | Ordner | Zeitaufwand |
+|---------|-------------|--------|-------------|
+| 0 | Projekt anlegen | `projekte/` | 1 Min |
+| 1 | Material vorbereiten | `01_material/` | 10-15 Min |
+| 2 | Material analysieren | `02_analyse/` | 15-30 Min |
+| 3 | Scripts generieren | `03_scripts/` | 30-60 Min |
+| 4 | System-Prompt bauen | `04_system_prompt/` | 10-20 Min |
+| 5 | Qualität prüfen | `05_quality/` | 10-15 Min |
+| 6 | Exportieren | `06_export/` | 5 Min |
+| **Gesamt** | | | **~1,5-2,5 Std** |
+
+---
+
+## Schritt 0: Projekt anlegen
+
+### Projekt-Vorlage kopieren
+
+```powershell
+# PowerShell
+Copy-Item -Recurse "lernbot_framework/projekte/_vorlage" "lernbot_framework/projekte/MEIN_PROJEKT"
+```
+
+**Namenskonvention:** `{{DATUM}}_{{FACH}}_{{THEMA}}`
+- Beispiel: `2026-01_Gastro_Wareneinkauf`
+
+### Projektstruktur
+
+Nach dem Kopieren hast du:
+
+```
+projekte/MEIN_PROJEKT/
+├── README.md              ← Projekt-Status & Checkliste
+├── 01_material/           ← Hier dein Material ablegen
+│   ├── _meta.yaml         ← Bot-Konfiguration ausfüllen
+│   └── README.md
+├── 02_analyse/            ← Analyse speichern
+├── 03_scripts/            ← Scripts speichern
+├── 04_system_prompt/      ← Prompt speichern
+├── 05_quality/            ← Report speichern
+└── 06_export/             ← Finale Version
+```
 
 ---
 
 ## Schritt 1: Material vorbereiten
+
+### Arbeitsordner: `01_material/`
 
 ### Was du brauchst
 - Unterrichtsmaterial (PDF, Word, Excel, MD, TXT)
@@ -26,23 +61,25 @@ Willkommen! Diese Anleitung führt dich Schritt für Schritt durch die Erstellun
 
 ### So gehst du vor
 
-#### 1.1 Ordner erstellen
-```
-docs/Vorlagen/{{dein-projekt-name}}/
-```
+#### 1.1 Material ablegen
 
-#### 1.2 Material ablegen
-Lege alle relevanten Dateien in den Ordner:
+Lege alle relevanten Dateien in `01_material/`:
 - Aufgabenblätter
 - Rezepte/Formeln/Tabellen
 - Hintergrundinformationen
 - Bewertungsbögen (falls vorhanden)
 
-#### 1.3 Metadaten-Datei erstellen
+#### 1.2 `_meta.yaml` ausfüllen
 
-Erstelle `_meta.yaml` im Projektordner:
+Öffne `01_material/_meta.yaml` und ersetze alle `{{PLATZHALTER}}`:
 
 ```yaml
+# === PROJEKT-INFORMATIONEN ===
+projekt:
+  name: "{{Projektname}}"
+  erstellt_am: "{{YYYY-MM-DD}}"
+  erstellt_von: "{{Dein Name}}"
+
 # === BOT-KONFIGURATION ===
 bot:
   name: "{{Bot-Name, z.B. LernBuddy}}"
@@ -57,41 +94,31 @@ kurs:
   zielgruppe: "{{z.B. Berufsschüler Gastronomie, 2. Lehrjahr}}"
   voraussetzungen: "{{Benötigtes Vorwissen}}"
 
-# === ZEITRAHMEN ===
-zeitrahmen:
-  dauer_gesamt: "{{Minuten, z.B. 90}}"
+# === LERNZIELE ===
+lernziele:
+  hauptziel: "{{Was sollen die Lernenden am Ende können?}}"
+  teilziele:
+    - "{{Teilziel 1}}"
+    - "{{Teilziel 2}}"
+    - "{{Teilziel 3}}"
 
 # === MATERIAL-LISTE ===
 materialien:
   - datei: "{{Dateiname.pdf}}"
+    typ: "{{Aufgabenblatt|Rezept|Tabelle|Hintergrund}}"
     beschreibung: "{{Kurzbeschreibung}}"
 ```
 
-#### 1.4 Lernziele definieren
-
-Erstelle `_lernziele.md`:
-
-```markdown
-# Lernziele
-
-## Hauptziel
-{{Was sollen die Lernenden am Ende können?}}
-
-## Teilziele
-- [ ] {{Lernziel 1 - z.B. "Mengen für 50 Personen berechnen"}}
-- [ ] {{Lernziel 2}}
-- [ ] {{Lernziel 3}}
-```
-
 ### ✅ Checkliste Schritt 1
-- [ ] Ordner erstellt
-- [ ] Material abgelegt
-- [ ] `_meta.yaml` ausgefüllt
-- [ ] `_lernziele.md` erstellt
+- [ ] Material in `01_material/` abgelegt
+- [ ] `_meta.yaml` vollständig ausgefüllt
+- [ ] Alle Platzhalter ersetzt
 
 ---
 
 ## Schritt 2: Material analysieren
+
+### Arbeitsordner: `02_analyse/`
 
 ### Was passiert hier
 Der **Material-Analyst** liest dein Material und extrahiert:
@@ -100,204 +127,186 @@ Der **Material-Analyst** liest dein Material und extrahiert:
 - Ressourcen (Tabellen, Rezepte, etc.)
 - Bewertungskriterien
 
-### So gehst du vor
-
-#### 2.1 Material-Analyst aufrufen
-
-Kopiere diesen Prompt und füge dein Material ein:
+### Prompt für Material-Analyst
 
 ```markdown
 # Auftrag: Material-Analyse
 
-Analysiere das folgende Unterrichtsmaterial und erstelle eine strukturierte Analyse.
+Analysiere das Material im Projektordner und erstelle eine strukturierte Analyse.
+
+## Projektpfad
+`lernbot_framework/projekte/MEIN_PROJEKT/`
 
 ## Metadaten
-- Fach: {{aus _meta.yaml}}
-- Zielgruppe: {{aus _meta.yaml}}
-- Dauer: {{aus _meta.yaml}}
-
-## Lernziele
-{{aus _lernziele.md}}
+Lies: `01_material/_meta.yaml`
 
 ## Material
-{{Hier das Material einfügen oder Datei referenzieren}}
+Analysiere alle Dateien in: `01_material/`
 
 ---
 
-Erstelle die Analyse nach dem Schema:
+Erstelle die Analyse nach dem Schema in `agents/material_analyst.md`:
 1. Metadaten erfassen
 2. Lernziele mit Bloom-Stufen verknüpfen
-3. Aufgaben identifizieren (mit Typ und Schwierigkeit)
+3. Aufgaben identifizieren
 4. Ressourcen katalogisieren
 5. Bewertungskriterien erkennen
 6. Lücken dokumentieren
 
-Verwende YAML-Blöcke für strukturierte Daten.
-Markiere fehlende Informationen mit {{PLACEHOLDER}}.
-```
-
-#### 2.2 Analyse speichern
-
-Speichere die Analyse als:
-```
-lernbot_framework/examples/{{projekt}}/01_material_analyse.md
+Speichere das Ergebnis als: `02_analyse/material_analyse.md`
 ```
 
 ### ✅ Checkliste Schritt 2
-- [ ] Material-Analyst Prompt ausgeführt
-- [ ] Analyse erhalten und gespeichert
-- [ ] Lücken notiert (falls vorhanden)
+- [ ] Material-Analyst ausgeführt
+- [ ] `02_analyse/material_analyse.md` gespeichert
+- [ ] Lücken dokumentiert
 
 ---
 
 ## Schritt 3: Scripts generieren
 
+### Arbeitsordner: `03_scripts/`
+
 ### Was passiert hier
-Der **Script-Generator** wandelt die Analyse in strukturierte Script-Blöcke um:
-- META-Block
-- PHASE-Blöcke
-- TASK-Blöcke
-- RUBRIC-Blöcke
-- MODEL-Blöcke (optional)
-- DEBRIEF-Block
+Der **Script-Generator** wandelt die Analyse in strukturierte Script-Blöcke um.
 
-### So gehst du vor
-
-#### 3.1 Script-Generator aufrufen
+### Prompt für Script-Generator
 
 ```markdown
 # Auftrag: Script-Generierung
 
-Basierend auf der folgenden Material-Analyse, generiere alle Script-Blöcke.
+Generiere alle Script-Blöcke basierend auf der Material-Analyse.
 
-## Material-Analyse
-{{Hier die Analyse aus Schritt 2 einfügen}}
+## Eingaben
+- Analyse: `02_analyse/material_analyse.md`
+- Konfiguration: `01_material/_meta.yaml`
+
+## Ausgabe
+Speichere als: `03_scripts/scripts_komplett.md`
 
 ---
 
 Generiere:
-1. META-Block (Dokument-Metadaten)
-2. PHASE-Blöcke (Ablauf-Phasen)
-3. RESOURCE-Blöcke (Material-Referenzen)
-4. TASK-Blöcke (Aufgaben mit Scaffolds)
-5. RUBRIC-Blöcke (Bewertungskriterien)
-6. MODEL-Blöcke (Musterlösungen, falls möglich)
-7. DEBRIEF-Block (Reflexion)
+1. META-Block
+2. PHASE-Blöcke
+3. RESOURCE-Blöcke
+4. TASK-Blöcke (mit Scaffolds)
+5. RUBRIC-Blöcke
+6. MODEL-Blöcke (optional)
+7. DEBRIEF-Block
 
-Verwende die Block-Syntax: [BLOCK]...[/BLOCK]
-Stelle sicher, dass alle IDs eindeutig und Referenzen gültig sind.
-```
-
-#### 3.2 Scripts prüfen
-
-Prüfe die generierten Scripts auf:
-- [ ] Alle Block-Typen vorhanden?
-- [ ] IDs eindeutig?
-- [ ] Referenzen stimmen?
-- [ ] Keine `{{PLACEHOLDER}}` mehr (außer gewollt)?
-
-#### 3.3 Scripts speichern
-
-Speichere als:
-```
-lernbot_framework/examples/{{projekt}}/02_generierte_scripts.md
+Verwende das Format aus `templates/script_vorlage_komplett.md`
 ```
 
 ### ✅ Checkliste Schritt 3
-- [ ] Script-Generator Prompt ausgeführt
-- [ ] Alle Block-Typen generiert
-- [ ] Scripts geprüft und gespeichert
+- [ ] Script-Generator ausgeführt
+- [ ] `03_scripts/scripts_komplett.md` gespeichert
+- [ ] Alle Block-Typen vorhanden
+- [ ] IDs eindeutig, Referenzen gültig
 
 ---
 
 ## Schritt 4: System-Prompt bauen
 
+### Arbeitsordner: `04_system_prompt/`
+
 ### Was passiert hier
 Der **Prompt-Builder** kombiniert alle Scripts zu einem finalen System-Prompt.
 
-### So gehst du vor
-
-#### 4.1 Prompt-Builder aufrufen
+### Prompt für Prompt-Builder
 
 ```markdown
 # Auftrag: System-Prompt Assembly
 
-Kombiniere die folgenden Scripts zu einem finalen System-Prompt.
+Kombiniere die Scripts zu einem finalen System-Prompt.
 
-## Bot-Konfiguration
-- Name: {{aus _meta.yaml}}
-- Tonalität: {{freundlich|formal|motivierend}}
-- Sprachniveau: {{B1|B2|C1}}
+## Eingaben
+- Scripts: `03_scripts/scripts_komplett.md`
+- Konfiguration: `01_material/_meta.yaml`
+- Basis-Template: `templates/scripts/system_prompt_base.md`
 
-## Generierte Scripts
-{{Hier die Scripts aus Schritt 3 einfügen}}
+## Ausgabe
+Speichere als: `04_system_prompt/system_prompt.md`
 
 ---
 
-Erstelle den finalen System-Prompt nach der Vorlage in:
-`lernbot_framework/templates/scripts/system_prompt_base.md`
-
-Der Output soll direkt kopierbar sein.
-```
-
-#### 4.2 System-Prompt speichern
-
-Speichere als:
-```
-lernbot_framework/examples/{{projekt}}/03_system_prompt.md
+Der Output soll direkt in eine LLM-Plattform kopierbar sein.
+Ersetze alle {{PLATZHALTER}} mit Werten aus der Konfiguration.
 ```
 
 ### ✅ Checkliste Schritt 4
-- [ ] Prompt-Builder Prompt ausgeführt
-- [ ] System-Prompt erhalten
-- [ ] Keine Platzhalter mehr vorhanden
+- [ ] Prompt-Builder ausgeführt
+- [ ] `04_system_prompt/system_prompt.md` gespeichert
+- [ ] Keine `{{PLATZHALTER}}` mehr vorhanden
 
 ---
 
 ## Schritt 5: Qualität prüfen
 
+### Arbeitsordner: `05_quality/`
+
 ### Was passiert hier
 Der **Quality-Checker** validiert den System-Prompt vor dem Einsatz.
 
-### So gehst du vor
-
-#### 5.1 Quality-Checker aufrufen
+### Prompt für Quality-Checker
 
 ```markdown
 # Auftrag: Quality-Check
 
-Prüfe den folgenden System-Prompt auf Qualität und Konsistenz.
+Prüfe den System-Prompt auf Qualität und Konsistenz.
 
-## System-Prompt
-{{Hier den System-Prompt aus Schritt 4 einfügen}}
+## Eingaben
+- System-Prompt: `04_system_prompt/system_prompt.md`
+- Scripts: `03_scripts/scripts_komplett.md`
+- Original-Material: `01_material/`
+
+## Ausgabe
+Speichere als: `05_quality/quality_report.md`
 
 ---
 
 Prüfe:
 1. Strukturelle Konsistenz (IDs, Referenzen, Block-Syntax)
 2. Didaktische Qualität (Lernziele, Scaffolds, Feedback)
-3. Inhaltliche Korrektheit (Fakten, Musterlösungen)
+3. Inhaltliche Korrektheit
 4. Technische Qualität (Formatierung, Token-Limit)
 
-Erstelle einen Quality-Report mit Freigabe-Empfehlung.
+Erstelle einen Report mit Freigabe-Empfehlung.
 ```
 
-#### 5.2 Fehler beheben (falls nötig)
+### Freigabe-Stufen
 
-Bei Fehlern:
-- Kritische Fehler → Zurück zu Schritt 3
-- Warnungen → Optional beheben
-
-#### 5.3 Report speichern
-
-```
-lernbot_framework/examples/{{projekt}}/04_quality_report.md
-```
+| Status | Bedeutung | Aktion |
+|--------|-----------|--------|
+| ✅ FREIGEGEBEN | Keine kritischen Fehler | → Schritt 6 |
+| ⚠️ ÜBERARBEITUNG | Behebbare Fehler | → Zurück zu Schritt 3/4 |
+| ❌ ABGELEHNT | Fundamentale Probleme | → Zurück zu Schritt 1/2 |
 
 ### ✅ Checkliste Schritt 5
-- [ ] Quality-Check durchgeführt
-- [ ] Report erhalten
-- [ ] Freigabe: ✅ FREIGEGEBEN
+- [ ] Quality-Checker ausgeführt
+- [ ] `05_quality/quality_report.md` gespeichert
+- [ ] Freigabe erhalten
+
+---
+
+## Schritt 6: Exportieren
+
+### Arbeitsordner: `06_export/`
+
+### Was passiert hier
+Du erstellst die finale Version für den produktiven Einsatz.
+
+### So gehst du vor
+
+1. **Kopieren**: System-Prompt aus `04_system_prompt/` kopieren
+2. **Bereinigen**: Falls nötig, Markdown-Formatierungen anpassen
+3. **Testen**: In LLM-Plattform einfügen und Testdialog durchführen
+4. **Dokumentieren**: Einsatznotizen in `06_export/README.md`
+
+### ✅ Checkliste Schritt 6
+- [ ] `FINAL_system_prompt.txt` erstellt
+- [ ] In LLM-Plattform getestet
+- [ ] Projekt-README aktualisiert (Status: ✅ Fertig)
 
 ---
 
@@ -305,29 +314,36 @@ lernbot_framework/examples/{{projekt}}/04_quality_report.md
 
 Dein Lernbot ist einsatzbereit!
 
-### Nächste Schritte
+### Projekt-Artefakte
 
-1. **System-Prompt kopieren** in deine LLM-Plattform
-2. **Testen** mit verschiedenen Schüler-Antworten
-3. **Iterieren** basierend auf Feedback
-
-### Tipps für den Einsatz
-
-| Situation | Empfehlung |
-|-----------|------------|
-| Bot gibt zu schnell Lösungen | Scaffolds in TASK-Blöcken anpassen |
-| Feedback zu hart/weich | Tonalität in System-Prompt ändern |
-| Aufgaben zu schwer/leicht | Bloom-Stufen anpassen |
-| Rubrik-Feedback ungenau | Kriterien in RUBRIC-Blöcken verfeinern |
+```
+projekte/MEIN_PROJEKT/
+├── 01_material/
+│   ├── _meta.yaml          ✓ Konfiguration
+│   └── {{material}}        ✓ Original-Material
+├── 02_analyse/
+│   └── material_analyse.md ✓ Analyse
+├── 03_scripts/
+│   └── scripts_komplett.md ✓ Scripts
+├── 04_system_prompt/
+│   └── system_prompt.md    ✓ Prompt
+├── 05_quality/
+│   └── quality_report.md   ✓ Report
+└── 06_export/
+    └── FINAL_system_prompt.txt ✓ EINSATZBEREIT
+```
 
 ---
 
 ## 📚 Weiterführende Dokumentation
 
-- **Detaillierte Agenten-Beschreibungen**: `lernbot_framework/agents/`
-- **Script-Templates**: `lernbot_framework/templates/scripts/`
-- **Vollständiger Workflow**: `lernbot_framework/processes/bot_creation.md`
-- **Intake-SOP**: `lernbot_framework/sops/material_intake.md`
+| Dokument | Pfad |
+|----------|------|
+| Agenten-Beschreibungen | `lernbot_framework/agents/` |
+| Script-Templates | `lernbot_framework/templates/scripts/` |
+| Vollständige Vorlage | `templates/script_vorlage_komplett.md` |
+| Workflow-Details | `processes/bot_creation.md` |
+| Beispielprojekt | `projekte/Beispiel_Tagung_Dock03/` |
 
 ---
 
@@ -351,8 +367,8 @@ Ja! Ändere:
 - Kriterien in RUBRIC-Blöcken
 - Reflexionsfragen in DEBRIEF-Block
 
-### Wie teste ich den Bot?
-1. Gib eine teilweise korrekte Antwort
-2. Prüfe: Wird Feedback korrekt gegeben?
-3. Frage nach Hints
-4. Prüfe: Werden Scaffolds gestuft angeboten?
+### Wo finde ich ein Beispiel?
+Schau dir das Beispielprojekt an:
+```
+lernbot_framework/projekte/Beispiel_Tagung_Dock03/
+```

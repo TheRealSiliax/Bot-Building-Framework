@@ -1,178 +1,171 @@
 # SOP: Material Intake
 
-Schritt-für-Schritt-Anleitung zur Aufnahme von Unterrichtsmaterial.
+Schritt-für-Schritt-Anleitung zur Aufnahme von Unterrichtsmaterial in ein Bot-Projekt.
 
 ## Zweck
 
-Diese SOP beschreibt, wie Unterrichtsmaterial für die Lernbot-Erstellung vorbereitet und dokumentiert wird.
+Diese SOP beschreibt, wie Unterrichtsmaterial für die Lernbot-Erstellung vorbereitet und im Projektordner organisiert wird.
 
 ## Voraussetzungen
 
 - Digitales Unterrichtsmaterial (PDF, Word, Excel, etc.)
 - Klarheit über Zielgruppe und Lernziele
-- Zugang zum Framework-Repository
+- Projektordner angelegt (aus `_vorlage/` kopiert)
+
+---
 
 ## Schritte
 
-### 1. Material sammeln
+### 1. Projektordner vorbereiten
+
+**Zeitaufwand:** 1 Minute
+
+```powershell
+# Vorlage kopieren
+Copy-Item -Recurse "lernbot_framework/projekte/_vorlage" "lernbot_framework/projekte/{{PROJEKT_NAME}}"
+```
+
+**Namenskonvention:** `{{DATUM}}_{{FACH}}_{{THEMA}}`
+- Beispiel: `2026-01_Gastro_Wareneinkauf`
+
+### 2. Material sammeln
 
 **Zeitaufwand:** 5-10 Minuten
 
-1. Sammle alle relevanten Materialien:
-   - Aufgabenblätter
-   - Rezepte/Formeln/Tabellen
-   - Hintergrundinformationen
-   - Bestehende Bewertungsbögen (falls vorhanden)
+Sammle alle relevanten Materialien:
+- Aufgabenblätter
+- Rezepte/Formeln/Tabellen
+- Hintergrundinformationen
+- Bestehende Bewertungsbögen (falls vorhanden)
 
-2. Prüfe die Formate:
-   - ✅ PDF, DOCX, XLSX, MD, TXT
-   - ⚠️ Scans → OCR erforderlich
-   - ❌ Videos → Transkription erforderlich
+Prüfe die Formate:
+- ✅ PDF, DOCX, XLSX, MD, TXT
+- ⚠️ Scans → OCR erforderlich
+- ❌ Videos → Transkription erforderlich
 
-3. Lege alle Dateien ab in:
-   ```
-   docs/Vorlagen/{{Projektname}}/
-   ```
-
-### 2. Material benennen
+### 3. Material ablegen
 
 **Zeitaufwand:** 2-5 Minuten
 
-Verwende einheitliche Dateinamen:
-
+Lege alle Dateien ab in:
 ```
-{{NR}}_{{TYP}}_{{BESCHREIBUNG}}_v{{VERSION}}.{{EXT}}
+lernbot_framework/projekte/{{PROJEKT_NAME}}/01_material/
 ```
 
+**Dateinamen-Konvention** (optional):
+```
+{{NR}}_{{TYP}}_{{BESCHREIBUNG}}.{{EXT}}
+```
 Beispiele:
-- `01_Aufgabenblatt_Wareneinkauf_v1.docx`
-- `02_Rezept_Pannfisch_v1.pdf`
-- `03_Tabelle_Lagerbestand_v1.xlsx`
+- `01_Aufgabenblatt_Wareneinkauf.docx`
+- `02_Rezept_Pannfisch.pdf`
+- `03_Tabelle_Lagerbestand.xlsx`
 
-### 3. Metadaten erfassen
+### 4. `_meta.yaml` ausfüllen
 
 **Zeitaufwand:** 10-15 Minuten
 
-Erstelle eine Datei `_meta.yaml` im Projektordner:
+Öffne `01_material/_meta.yaml` und ersetze **alle** `{{PLATZHALTER}}`:
 
 ```yaml
-# Projekt-Metadaten
+# === PROJEKT-INFORMATIONEN ===
 projekt:
   name: "{{Projektname}}"
   erstellt_am: "{{YYYY-MM-DD}}"
-  erstellt_von: "{{Name}}"
+  erstellt_von: "{{Dein Name}}"
+  version: "v1.0"
 
-# Bot-Konfiguration
+# === BOT-KONFIGURATION ===
 bot:
-  name: "{{Bot-Name, z.B. SIMcoach}}"
-  tonalitaet: "{{formal|freundlich|motivierend}}"
-  sprachniveau: "{{B1|B2|C1}}"
+  name: "{{Bot-Name}}"
+  tonalitaet: "freundlich"    # freundlich | formal | motivierend
+  sprachniveau: "B1"          # B1 | B2 | C1
   standard_modus: "Schüler*innen-Modus"
 
-# Kurs-Informationen
+# === KURS-INFORMATIONEN ===
 kurs:
   fach: "{{Fachbereich}}"
   modul: "{{Modulname}}"
-  zielgruppe: "{{Beschreibung, z.B. 'Berufsschüler Gastronomie, 2. LJ'}}"
+  zielgruppe: "{{Beschreibung der Zielgruppe}}"
   voraussetzungen: "{{Benötigtes Vorwissen}}"
 
-# Zeitrahmen
-zeitrahmen:
-  dauer_gesamt: "{{Minuten}}"
-  anzahl_phasen: "{{Geschätzt}}"
+# === LERNZIELE ===
+lernziele:
+  hauptziel: "{{Was sollen die Lernenden am Ende können?}}"
+  teilziele:
+    - "{{Teilziel 1}}"
+    - "{{Teilziel 2}}"
+    - "{{Teilziel 3}}"
 
-# Material-Inventar
+# === MATERIAL-INVENTAR ===
 materialien:
   - datei: "{{Dateiname}}"
-    typ: "{{Aufgabe|Rezept|Tabelle|Hintergrund|Bewertung}}"
+    typ: "{{Aufgabenblatt|Rezept|Tabelle|Hintergrund|Bewertung}}"
     beschreibung: "{{Kurzbeschreibung}}"
     wichtigkeit: "{{Kern|Ergänzend|Optional}}"
-```
-
-### 4. Lernziele definieren
-
-**Zeitaufwand:** 10-20 Minuten
-
-Erstelle eine Liste der Lernziele in `_lernziele.md`:
-
-```markdown
-# Lernziele für {{Projektname}}
-
-## Hauptziel
-{{Ein Satz: Was sollen die Lernenden am Ende können?}}
-
-## Teilziele
-
-### Wissen (Bloom 1)
-- [ ] {{Die Lernenden können ... benennen/beschreiben}}
-
-### Verstehen (Bloom 2)
-- [ ] {{Die Lernenden können ... erklären/interpretieren}}
-
-### Anwenden (Bloom 3)
-- [ ] {{Die Lernenden können ... anwenden/berechnen}}
-
-### Analysieren (Bloom 4)
-- [ ] {{Die Lernenden können ... vergleichen/unterscheiden}}
-
-### Bewerten (Bloom 5)
-- [ ] {{Die Lernenden können ... bewerten/begründen}}
-
-### Erschaffen (Bloom 6)
-- [ ] {{Die Lernenden können ... entwickeln/erstellen}}
 ```
 
 ### 5. Qualitäts-Check
 
 **Zeitaufwand:** 5 Minuten
 
-Prüfe vor Abschluss:
-
 | Kriterium | Status |
 |-----------|--------|
-| Alle Materialien digital vorhanden | ☐ |
-| Dateien einheitlich benannt | ☐ |
+| Alle Materialien in `01_material/` vorhanden | ☐ |
 | `_meta.yaml` vollständig ausgefüllt | ☐ |
-| `_lernziele.md` mit min. 3 Teilzielen | ☐ |
-| Keine unlesbaren/beschädigten Dateien | ☐ |
+| Keine `{{PLATZHALTER}}` mehr in `_meta.yaml` | ☐ |
+| Lernziele mit mind. 3 Teilzielen | ☐ |
+| Alle Dateien lesbar/nicht beschädigt | ☐ |
 
-### 6. Übergabe an Material-Analyst
+### 6. Projekt-README aktualisieren
 
-**Zeitaufwand:** 1 Minute
+**Zeitaufwand:** 2 Minuten
 
-Starte Phase 2 mit folgendem Prompt:
+Öffne `projekte/{{PROJEKT_NAME}}/README.md` und aktualisiere:
+- Bot-Name
+- Fach
+- Zielgruppe
+- Status Phase 1: ✅ Fertig
 
-```markdown
-Analysiere das Material im Ordner `docs/Vorlagen/{{Projektname}}/`.
-
-Metadaten: siehe `_meta.yaml`
-Lernziele: siehe `_lernziele.md`
-
-Erstelle eine vollständige Material-Analyse gemäß dem Schema in 
-`lernbot_framework/agents/material_analyst.md`.
-```
+---
 
 ## Checkliste
 
 ```markdown
-## Intake-Checkliste für {{Projektname}}
+## Intake-Checkliste für {{PROJEKT_NAME}}
 
+- [ ] Projektordner aus _vorlage/ kopiert
 - [ ] Material gesammelt und abgelegt
-- [ ] Dateien einheitlich benannt
-- [ ] `_meta.yaml` erstellt
-- [ ] `_lernziele.md` erstellt
+- [ ] `_meta.yaml` vollständig ausgefüllt
 - [ ] Qualitäts-Check bestanden
-- [ ] Übergabe an Material-Analyst
+- [ ] Projekt-README aktualisiert
 
 Abgeschlossen am: {{Datum}}
 Bearbeiter: {{Name}}
 ```
 
+---
+
+## Nächster Schritt
+
+Nach erfolgreichem Intake → **Material-Analyst** aufrufen
+
+Prompt:
+```markdown
+Analysiere das Material in:
+`lernbot_framework/projekte/{{PROJEKT_NAME}}/01_material/`
+
+Speichere die Analyse in:
+`lernbot_framework/projekte/{{PROJEKT_NAME}}/02_analyse/material_analyse.md`
+```
+
+---
+
 ## Häufige Probleme
 
 | Problem | Lösung |
 |---------|--------|
-| Material nur als Scan | OCR-Tool verwenden (z.B. Adobe Acrobat, Tesseract) |
+| Material nur als Scan | OCR-Tool verwenden (Adobe Acrobat, Tesseract) |
 | Unklare Lernziele | Rücksprache mit Fachexperte/Dozent |
-| Material zu umfangreich | In mehrere Lernbots aufteilen |
-| Fehlende Bewertungskriterien | In Phase 3 vom Script-Generator generieren lassen |
+| Material zu umfangreich | In mehrere Bot-Projekte aufteilen |
+| Fehlende Bewertungskriterien | Script-Generator erstellt diese automatisch |

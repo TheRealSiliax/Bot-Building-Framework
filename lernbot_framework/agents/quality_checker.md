@@ -11,12 +11,27 @@ Validiert die Qualität und Konsistenz aller generierten Artefakte (Scripts und 
 - Maschinenlesbarkeits-Validierung
 - Klare Freigabe-Empfehlung
 
+## Projektstruktur-Integration
+
+```
+projekte/{{PROJEKT}}/
+├── 01_material/           ← Original-Material für Abgleich
+│   ├── _meta.yaml
+│   └── {{material}}
+├── 03_scripts/            ← EINGABE: Scripts prüfen
+│   └── scripts_komplett.md
+├── 04_system_prompt/      ← EINGABE: System-Prompt prüfen
+│   └── system_prompt.md
+└── 05_quality/            ← AUSGABE: quality_report.md speichern
+    └── quality_report.md
+```
+
 ## Eingaben
 
-- Generierte Scripts (alle Typen)
-- Finaler System-Prompt (vom Prompt-Builder)
-- Original-Material (für Abgleich)
-- Qualitätskriterien (Checkliste)
+- **Scripts**: `projekte/{{PROJEKT}}/03_scripts/scripts_komplett.md`
+- **System-Prompt**: `projekte/{{PROJEKT}}/04_system_prompt/system_prompt.md`
+- **Original-Material**: `projekte/{{PROJEKT}}/01_material/` (für Abgleich)
+- **Qualitätskriterien**: Siehe Prüf-Kategorien unten
 
 ## Constraints
 

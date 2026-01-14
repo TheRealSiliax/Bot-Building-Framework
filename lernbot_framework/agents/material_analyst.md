@@ -10,10 +10,22 @@ Analysiert Unterrichtsmaterialien (PDF, Word, Excel, MD, TXT) und extrahiert str
 - Strukturierte Aufbereitung für nachfolgende Script-Generierung
 - Identifikation von Lücken oder fehlenden Informationen
 
+## Projektstruktur-Integration
+
+```
+projekte/{{PROJEKT}}/
+├── 01_material/           ← EINGABE: Material + _meta.yaml lesen
+│   ├── _meta.yaml         ← Metadaten und Lernziele
+│   └── {{material.pdf}}   ← Zu analysierendes Material
+└── 02_analyse/            ← AUSGABE: material_analyse.md speichern
+    └── material_analyse.md
+```
+
 ## Eingaben
 
-- Rohes Unterrichtsmaterial (ein oder mehrere Dokumente)
-- Optionale Metadaten: Fach, Zielgruppe, Zeitrahmen, Kompetenzschwerpunkte
+- **Projektordner**: `projekte/{{PROJEKT}}/01_material/`
+- **Metadaten**: `_meta.yaml` (Bot-Konfiguration, Lernziele)
+- **Material**: Alle Dateien im Ordner (PDF, Word, Excel, MD, TXT)
 
 ## Constraints
 
@@ -157,6 +169,17 @@ Analysiere das bereitgestellte Unterrichtsmaterial und extrahiere ALLE relevante
 Liefere eine vollständige Material-Analyse im vorgegebenen Markdown-Format mit allen YAML-Blöcken.
 ```
 
+## Ausgabe speichern
+
+Speichere die Analyse in:
+```
+projekte/{{PROJEKT}}/02_analyse/material_analyse.md
+```
+
+## Nächster Schritt
+
+Nach erfolgreicher Analyse → **Script-Generator** aufrufen mit der erstellten Analyse.
+
 ## Quelle
 
-Konsistent mit Lernbot-Framework v0.1
+Konsistent mit Lernbot-Framework v1.0

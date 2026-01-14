@@ -11,11 +11,26 @@ Kombiniert alle generierten Scripts zu einem finalen, einsatzbereiten System-Pro
 - Validierung der Prompt-Struktur
 - Optimierung für das Ziel-LLM
 
+## Projektstruktur-Integration
+
+```
+projekte/{{PROJEKT}}/
+├── 01_material/           
+│   └── _meta.yaml         ← Bot-Konfiguration lesen
+├── 03_scripts/            ← EINGABE: scripts_komplett.md lesen
+│   └── scripts_komplett.md
+└── 04_system_prompt/      ← AUSGABE: system_prompt.md speichern
+    └── system_prompt.md
+```
+
+**Basis-Template**: `templates/scripts/system_prompt_base.md`
+
 ## Eingaben
 
-- Generierte Scripts (META, TASK, RUBRIC, MODEL, DEBRIEF)
-- System-Prompt-Basis-Template
-- Bot-Konfiguration:
+- **Scripts**: `projekte/{{PROJEKT}}/03_scripts/scripts_komplett.md`
+- **Konfiguration**: `projekte/{{PROJEKT}}/01_material/_meta.yaml`
+- **Basis-Template**: `templates/scripts/system_prompt_base.md`
+- **Bot-Konfiguration** (aus `_meta.yaml`):
   - Bot-Name (z.B. "SIMcoach", "LernBuddy")
   - Tonalität (formal, freundlich, motivierend)
   - Sprachniveau (B1, B2, C1)

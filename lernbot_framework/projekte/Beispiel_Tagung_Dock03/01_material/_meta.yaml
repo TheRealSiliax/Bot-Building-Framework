@@ -1,0 +1,58 @@
+# ============================================
+# BOT-PROJEKT KONFIGURATION
+# ============================================
+# Beispielprojekt: Tagung im Hotel Dock 03
+# ============================================
+
+# === PROJEKT-INFORMATIONEN ===
+projekt:
+  name: "Tagung_Dock03_Wareneinkauf"
+  erstellt_am: "2026-01-14"
+  erstellt_von: "Framework-Beispiel"
+  version: "v1.0"
+
+# === BOT-KONFIGURATION ===
+bot:
+  name: "SIMcoach"
+  tonalitaet: "freundlich"
+  sprachniveau: "B1"
+  standard_modus: "Schüler*innen-Modus"
+
+# === KURS-INFORMATIONEN ===
+kurs:
+  fach: "Gastronomie / Hotelwesen"
+  modul: "Warenwirtschaft und Lieferantenmanagement"
+  zielgruppe: "Berufsschüler*innen Gastronomie/Hotelwesen, 2. Lehrjahr"
+  voraussetzungen: "Grundkenntnisse Rezeptberechnung, Tabellenkalkulation"
+
+# === ZEITRAHMEN ===
+zeitrahmen:
+  dauer_gesamt: "90-120"
+  anzahl_phasen: "5"
+
+# === LERNZIELE ===
+lernziele:
+  hauptziel: "Die Lernenden können eigenständig einen Wareneinkauf für eine Veranstaltung planen, durchführen und begründen."
+  teilziele:
+    - "Warenbedarf aus Rezepten für 50 Personen korrekt berechnen"
+    - "Lagerbestand prüfen und Bestellung bereinigen"
+    - "Angebote vergleichen und Lieferantenentscheidung begründen"
+    - "Entscheidungsprozess reflektieren und auf Praxis übertragen"
+
+# === MATERIAL-INVENTAR ===
+materialien:
+  - datei: "Tagung_003_strukturiert_kompakt_v1-1.docx"
+    typ: "Aufgabenblatt"
+    beschreibung: "Strukturierte Script-Vorlage mit Phasen, Tasks, Rubriken"
+    wichtigkeit: "Kern"
+  
+  - datei: "extracted_content.md"
+    typ: "Hintergrund"
+    beschreibung: "Extrahierter Text aus der Word-Datei (maschinenlesbar)"
+    wichtigkeit: "Kern"
+
+# === NOTIZEN ===
+notizen: |
+  Dieses Projekt dient als Beispiel für das Lernbot-Framework.
+  Die Script-Vorlage enthält bereits eine strukturierte Version des Materials
+  im maschinenlesbaren Format mit PHASE-, TASK-, RUBRIC- und DEBRIEF-Blöcken.
