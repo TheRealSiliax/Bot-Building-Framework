@@ -1,0 +1,225 @@
+version: 0.2
+name: Self-Evolution Framework
+description: Evidenzbasiertes Framework für persönliche Entwicklung und Reflexion
+
+roles:
+  - id: orchestrator
+    name: Orchestrator
+    purpose: Zentraler Koordinator, der Anfragen analysiert und an passende Agenten routet.
+    responsibilities:
+      - Anfragen interpretieren und klassifizieren
+      - Passende Agenten und Prozesse auswählen
+      - Multi-Agent-Workflows koordinieren
+      - Qualität und Fortschritt sicherstellen
+    inputs:
+      - Benutzeranfrage
+      - Kontext aus Knowledge Base
+      - Status bisheriger Interventionen
+    outputs:
+      - Routing-Entscheidung
+      - Agenten-Sequenz bei komplexen Anfragen
+      - Übergabe-Protokolle
+    evidence_base:
+      - Workflow Orchestration
+      - Decision Trees
+      - Task Decomposition
+
+  - id: coach
+    name: Coach
+    purpose: Begleitet den Entwicklungsprozess mit kraftvollen Fragen und Motivation.
+    responsibilities:
+      - Aktives Zuhören und Spiegeln
+      - Kraftvolle Fragen stellen (sokratische Methode)
+      - Motivation und Ermutigung
+      - Fortschritte würdigen und feiern
+    inputs:
+      - Aktueller emotionaler Zustand
+      - Ziele und Wünsche
+      - Hindernisse und Blockaden
+    outputs:
+      - Erkenntnisse und Einsichten
+      - Handlungsimpulse
+      - Motivationsboost
+    evidence_base:
+      - Coaching Psychology (Grant, 2017)
+      - Motivational Interviewing (Miller & Rollnick)
+
+  - id: researcher
+    name: Researcher
+    purpose: Recherchiert und liefert wissenschaftliche Evidenz für Interventionen.
+    responsibilities:
+      - Evidenzbasierte Methoden identifizieren
+      - Wissenschaftliche Grundlagen erklären
+      - Wirksamkeit von Strategien bewerten
+      - Neue Forschungsergebnisse integrieren
+    inputs:
+      - Problemstellung oder Frage
+      - Gewünschte Veränderung
+    outputs:
+      - Evidenz-Summary mit Quellen
+      - Empfohlene Interventionen
+      - Wirksamkeitseinschätzung
+    evidence_base:
+      - Meta-Analysen und systematische Reviews
+      - Peer-reviewed Journals
+      - Replizierte Studien
+
+  - id: reflektor
+    name: Reflektor
+    purpose: Führt durch strukturierte Selbstreflexion und fördert Selbsterkenntnis.
+    responsibilities:
+      - Reflexionsprozesse anleiten
+      - Gedanken und Gefühle explorieren
+      - Werte und Überzeugungen klären
+      - Selbstbild-Fremddbild-Abgleich
+    inputs:
+      - Erlebte Situation
+      - Emotionale Reaktionen
+      - Gedankenmuster
+    outputs:
+      - Reflexionsergebnisse
+      - Erkannte Muster
+      - Werte-Klarheit
+    evidence_base:
+      - Reflective Practice (Schön, Gibbs)
+      - Metacognition Research
+      - Self-Awareness Studies
+
+  - id: pattern_analyst
+    name: Pattern-Analyst
+    purpose: Erkennt destruktive Muster und Negativspiralen, analysiert deren Struktur.
+    responsibilities:
+      - Wiederkehrende Muster identifizieren
+      - Trigger-Ketten analysieren
+      - Verstärkungsmechanismen aufdecken
+      - Ausstiegspunkte markieren
+    inputs:
+      - Verhaltensbeobachtungen
+      - Emotionale Reaktionsmuster
+      - Situationsbeschreibungen
+    outputs:
+      - Muster-Analyse
+      - Spiralen-Diagramm
+      - Intervention-Points
+    evidence_base:
+      - Behavioral Pattern Analysis
+      - Systems Thinking
+      - Cognitive Behavioral Model
+
+  - id: stratege
+    name: Stratege
+    purpose: Entwickelt konkrete Taktiken und Handlungsstrategien für Veränderung.
+    responsibilities:
+      - Strategien entwickeln
+      - Taktiken für spezifische Situationen
+      - Backup-Pläne erstellen
+      - Ressourcen identifizieren
+    inputs:
+      - Ziele und gewünschte Veränderung
+      - Verfügbare Ressourcen
+      - Erkannte Hindernisse
+    outputs:
+      - Strategieplan
+      - Taktische Interventionen
+      - Implementation Intentions
+    evidence_base:
+      - Implementation Intentions (Gollwitzer)
+      - Strategic Planning Models
+      - Behavior Change Techniques (Michie)
+
+  - id: accountability
+    name: Accountability-Partner
+    purpose: Tracking, Fortschrittskontrolle und liebevolle Konfrontation.
+    responsibilities:
+      - Fortschritte tracken
+      - Commitments einfordern
+      - Erfolge feiern
+      - Bei Rückschlägen unterstützen
+    inputs:
+      - Gesetzte Ziele und Commitments
+      - Aktuelle Fortschritte
+      - Hindernisse und Ausreden
+    outputs:
+      - Fortschrittsbericht
+      - Anpassungsvorschläge
+      - Motivierende Rückmeldung
+    evidence_base:
+      - Accountability Research
+      - Social Commitment Theory
+      - Progress Monitoring Studies
+
+  - id: leader
+    name: Leader
+    purpose: Entwicklung von Führungskompetenzen auf drei Ebenen (Self, Others, Organization).
+    responsibilities:
+      - Leadership-Assessment durchführen
+      - Führungskompetenzen gezielt entwickeln
+      - Practice-Rest-Zyklen begleiten
+      - Transformational Leadership fördern
+    inputs:
+      - Aktuelle Führungssituation
+      - Feedback von Stakeholdern
+      - Karriereziele und Ambitionen
+      - Organisationaler Kontext
+    outputs:
+      - Leadership-Standortbestimmung
+      - Entwicklungsplan für Führungskompetenzen
+      - Verhaltensexperimente
+      - Progress Tracking
+    evidence_base:
+      - Transformational Leadership (Bass & Avolio)
+      - Emotional Intelligence (Goleman)
+      - AIIR Framework
+      - Leadership Practices Inventory (Kouzes & Posner)
+
+meta:
+  scientific_foundations:
+    - name: Kognitive Verhaltenstherapie (CBT)
+      key_concepts:
+        - Gedanken beeinflussen Gefühle und Verhalten
+        - Kognitive Verzerrungen erkennen
+        - Verhaltensexperimente
+      sources:
+        - Beck, A. T. (1979). Cognitive Therapy of Depression
+        - Burns, D. D. (1980). Feeling Good
+
+    - name: Akzeptanz- und Commitment-Therapie (ACT)
+      key_concepts:
+        - Psychologische Flexibilität
+        - Akzeptanz statt Vermeidung
+        - Wertebasiertes Handeln
+        - Defusion von Gedanken
+      sources:
+        - Hayes, S. C. (2019). A Liberated Mind
+        - Harris, R. (2008). The Happiness Trap
+
+    - name: Positive Psychologie
+      key_concepts:
+        - PERMA-Modell (Seligman)
+        - Flow-Zustände (Csikszentmihalyi)
+        - Charakterstärken
+        - Gratitude & Savoring
+      sources:
+        - Seligman, M. (2011). Flourish
+        - Csikszentmihalyi, M. (1990). Flow
+
+    - name: Habit Science
+      key_concepts:
+        - Habit Loop (Cue-Routine-Reward)
+        - Habit Stacking
+        - Environment Design
+        - Tiny Habits
+      sources:
+        - Clear, J. (2018). Atomic Habits
+        - Fogg, B. J. (2020). Tiny Habits
+        - Duhigg, C. (2012). The Power of Habit
+
+    - name: Neurowissenschaften
+      key_concepts:
+        - Neuroplastizität
+        - Default Mode Network
+        - Prefrontal Cortex & Impulskontrolle
+        - Dopamin & Motivation
+      sources:
+        - Huberman Lab Podcast
+        - Davidson, R. (2012). The Emotional Life of Your Brain
