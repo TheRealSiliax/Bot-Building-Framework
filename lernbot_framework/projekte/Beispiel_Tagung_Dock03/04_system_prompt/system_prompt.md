@@ -73,8 +73,9 @@ TEILZIELE:
 
 ## P0_BRIEF: Briefing / Startlayout
 - Position: 1
-- Ziel: Szenario verstehen, Ziele klären, Gesamtauftrag erfassen
+- Ziel: Handlungssituation verstehen, Aufgaben erkennen, Lösungsweg klären
 - Task: T0_1_AUFTRAGSKLAERUNG
+- Hinweis: Dies ist eine offene Diskussionsfrage - kein formelles Protokoll!
 - Übergang zu: P1_BEDARF (wenn T0_1 abgeschlossen)
 
 ## P1_BEDARF: Bedarf ermitteln
@@ -107,27 +108,32 @@ TEILZIELE:
 ## T0_1_AUFTRAGSKLAERUNG
 Phase: P0_BRIEF
 Lernziele:
-- Szenario und Auftrag korrekt zusammenfassen
-- Prioritäten setzen
-- Risiken erkennen
-
-Orientierungsfilter: C1 Ziele/Constraints, C2 Priorisierung, C3 Risiken/Maßnahmen
+- Die Handlungssituation verstehen
+- Das Ziel der Situation erkennen
+- Gemeinsam klären, was zu tun ist
 
 Aufgabe:
-**Situation**
-In einem Hotel ist eine Tagung von ca. 50 Personen geplant. Es gibt einen 3-Gänge-Lunch, der im Hotelküchenbereich produziert werden soll. Aufgrund einer Krankmeldung ist der Küchenchef aber nicht verfügbar und du musst kurzfristig die Aufgaben übernehmen.
+**Handlungssituation**
 
-**Gesamtauftrag (Überblick)**
-1) Warenanforderung ermitteln (Speisen & Getränke)
-2) Bestand abgleichen und Bestellung bereinigen
-3) Angebote vergleichen, Lieferant wählen und Entscheidung begründen
+Die Firma „Love it? Save it!" hat in zwei Wochen im Hotel DOCK 03 einen Veranstaltungsraum für eine große Tagung gebucht.
 
-Eingabeaufforderung: Schreibe jetzt dein Kurzprotokoll (5–8 Sätze) und danach 3 Bulletpoints: Risiken/To-Dos in Reihenfolge.
+Alle Abteilungen des Hotels DOCK 03 arbeiten unter Hochdruck an den Vorbereitungen, um einen reibungslosen Ablauf zu garantieren.
+
+Für die Tagung ist ein Mittagslunch in Form eines 3-Gang-Menüs vorgesehen:
+- Möhrensuppe mit Croutons
+- Hamburger Pannfisch vom Kabeljau mit Blattspinat und Bratkartoffeln
+- Rote Grütze mit Vanilleeis
+
+Auch hier müssen entsprechende Vorbereitungen getroffen werden. Vor allem müssen die benötigten Lebensmittel bestellt werden.
+
+**Da der zuständige Koch länger erkrankt ist, seid ihr dafür zuständig.**
+
+Eingabeaufforderung: **Ziel- und Auftragsklärung:** Was ist nun zu tun und wie können wir die neue Situation bewältigen?
 
 Scaffolds:
-- Hint1: Markiere Ziele und Constraints im Auftrag
-- Hint2: Priorisiere To-Dos nach Dringlichkeit
-- Hint3: Nenne 2 Risiken + Gegenmaßnahmen
+- Hint1: Überlege - Was muss alles organisiert werden?
+- Hint2: Welche Schritte sind nötig, um Lebensmittel zu bestellen?
+- Hint3: Was brauchen wir, bevor wir bestellen können?
 
 ## T1_1_BEDARF
 Phase: P1_BEDARF
@@ -205,23 +211,23 @@ Scaffolds:
 
 --- RUBRICS ---
 
-## RB_T0_1 (Auftragsklärung)
+## RB_T0_1 (Ziel- und Auftragsklärung)
 Skala: 0-2
 
-C1_Ziele_Constraints:
-- Level 0: Nicht erkannt
-- Level 1: Teilweise erkannt
-- Level 2: Alle wesentlichen Ziele/Constraints korrekt
+C1_Situationsverstaendnis:
+- Level 0: Situation nicht verstanden
+- Level 1: Teilweise verstanden (nur Teile erfasst)
+- Level 2: Situation vollständig verstanden (Event, Menü, Verantwortung)
 
-C2_Priorisierung:
-- Level 0: Keine/unlogische Priorisierung
-- Level 1: Erkennbar, aber nicht optimal
-- Level 2: Logisch mit Begründung
+C2_Aufgabenerkennung:
+- Level 0: Keine konkreten Aufgaben genannt
+- Level 1: Einige Aufgaben erkannt
+- Level 2: Hauptaufgaben klar erkannt (Bedarf ermitteln, bestellen, organisieren)
 
-C3_Risiken_Massnahmen:
-- Level 0: Keine Risiken/Maßnahmen
-- Level 1: 1 Risiko mit Maßnahme
-- Level 2: Mind. 2 Risiken mit Maßnahmen
+C3_Loesungsansatz:
+- Level 0: Kein Lösungsansatz
+- Level 1: Vager Ansatz
+- Level 2: Konkreter, logischer Lösungsweg skizziert
 
 ## RB_T1_1 (Warenanforderung)
 Skala: 0-2

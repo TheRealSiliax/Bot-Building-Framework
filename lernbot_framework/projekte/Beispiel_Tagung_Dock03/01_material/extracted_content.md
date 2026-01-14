@@ -182,20 +182,26 @@ Hinweis: Pro Task sind die „Nach 1. Versuch“-Elemente (Hinweise, Rubrik-Feed
 [TASK-BLOCK]
 TASK_ID: T0_1_AUFTRAGSKLAERUNG
 Phase: P0_BRIEF
-Lernziele: Szenario und Auftrag korrekt zusammenfassen; Prioritäten setzen; Risiken erkennen.
-Orientierungsfilter (Rubrik-Kriterien kurz): RB_T0_1 | C1 Ziele/Constraints, C2 Priorisierung, C3 Risiken/Maßnahmen
-Aufgabe: Situation
-In einem Hotel ist eine Tagung von ca. 50 Personen geplant. Es gibt einen 3-Gänge-Lunch, der im Hotelküchenbereich produziert werden soll. Aufgrund einer Krankmeldung ist der Küchenchef aber nicht verfügbar und du musst kurzfristig die Aufgaben übernehmen.
+Lernziele: Handlungssituation verstehen; Aufgaben erkennen; Lösungsweg gemeinsam klären.
+Orientierungsfilter (Rubrik-Kriterien kurz): RB_T0_1 | C1 Situationsverständnis, C2 Aufgabenerkennung, C3 Lösungsansatz
+Aufgabe: Handlungssituation
 
-Gesamtauftrag (Überblick)
-1) Warenanforderung ermitteln (Speisen & Getränke)
-2) Bestand abgleichen und Bestellung bereinigen
-3) Angebote vergleichen, Lieferant wählen und Entscheidung begründen
-Eingabeaufforderung: Schreibe jetzt dein Kurzprotokoll (5–8 Sätze) und danach 3 Bulletpoints: Risiken/To-Dos in Reihenfolge.
+Die Firma „Love it? Save it!" hat in zwei Wochen im Hotel DOCK 03 einen Veranstaltungsraum für eine große Tagung gebucht.
+
+Alle Abteilungen des Hotels DOCK 03 arbeiten unter Hochdruck an den Vorbereitungen, um einen reibungslosen Ablauf zu garantieren.
+
+Für die Tagung ist ein Mittagslunch in Form eines 3-Gang-Menüs vorgesehen:
+- Möhrensuppe mit Croutons
+- Hamburger Pannfisch vom Kabeljau mit Blattspinat und Bratkartoffeln
+- Rote Grütze mit Vanilleeis
+
+Auch hier müssen entsprechende Vorbereitungen getroffen werden. Vor allem müssen die benötigten Lebensmittel bestellt werden. Da der zuständige Koch länger erkrankt ist, seid ihr dafür zuständig.
+
+Eingabeaufforderung: Ziel- und Auftragsklärung: „Was ist nun zu tun und wie können wir die neue Situation bewältigen?"
 — Nach 1. Lösungsversuch ausgeben (nicht in der Erst-Ausgabe) —
 Input/Material (intern): R_TEXT_SITUATION, R_BRIEF_VERANSTALTER, R_TEXT_TASKS
 Rubrik (für Feedback): RB_T0_1
-Teilhinweise (Scaffolds): Hint1: Ziele/Constraints markieren | Hint2: To-Dos priorisieren | Hint3: 2 Risiken + Gegenmaßnahmen
+Teilhinweise (Scaffolds): Hint1: Was muss alles organisiert werden? | Hint2: Welche Schritte sind nötig? | Hint3: Was brauchen wir, bevor wir bestellen können?
 Typische Fehler (optional): {{eintragen}}
 Abgabeformat (Output): {{eintragen (aus Aufgabe ableiten)}}
 Zeit/Umfang: {{eintragen}}
@@ -270,22 +276,19 @@ RUBRIC_ID: RB_T0_1
 Gilt für TASK_ID: T0_1_AUFTRAGSKLAERUNG
 Skala: 0–2 (0 = nicht erfüllt, 1 = teilweise, 2 = erfüllt)
 Hinweise zur Bewertung: Kriteriumsbezogen, mit Belegen aus der Schülerantwort. Kurz und konstruktiv.
-Kriterien (Platzhalter-Levels bitte ausfüllen):
-Kriterium_ID: C1_Ziele_Constraints | Kriterium: {{Beschreibung}}
-Level 0: {{...}}
-Level 1: {{...}}
-Level 2: {{...}}
-Ankerbeispiele: {{...}}
-Kriterium_ID: C2_Priorisierung | Kriterium: {{Beschreibung}}
-Level 0: {{...}}
-Level 1: {{...}}
-Level 2: {{...}}
-Ankerbeispiele: {{...}}
-Kriterium_ID: C3_Risiken_Massnahmen | Kriterium: {{Beschreibung}}
-Level 0: {{...}}
-Level 1: {{...}}
-Level 2: {{...}}
-Ankerbeispiele: {{...}}
+Kriterien:
+Kriterium_ID: C1_Situationsverstaendnis | Kriterium: Situation vollständig verstanden
+Level 0: Situation nicht verstanden
+Level 1: Teilweise verstanden (nur Teile erfasst)
+Level 2: Vollständig verstanden (Event, Menü, Verantwortung)
+Kriterium_ID: C2_Aufgabenerkennung | Kriterium: Notwendige Aufgaben erkannt
+Level 0: Keine konkreten Aufgaben genannt
+Level 1: Einige Aufgaben erkannt
+Level 2: Hauptaufgaben klar erkannt (Bedarf ermitteln, bestellen, organisieren)
+Kriterium_ID: C3_Loesungsansatz | Kriterium: Lösungsweg skizziert
+Level 0: Kein Lösungsansatz
+Level 1: Vager Ansatz
+Level 2: Konkreter, logischer Lösungsweg skizziert
 [/RUBRIC-BLOCK]
 [RUBRIC-BLOCK]
 RUBRIC_ID: RB_T1_1

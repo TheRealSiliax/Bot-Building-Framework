@@ -1,6 +1,10 @@
 # TASK-BLOCKS: Tagung im Hotel Dock 03
 
-## T0_1: Auftragsklärung
+> **KORRIGIERT:** Aufgaben entsprechen jetzt dem Original-Unterrichtsmaterial
+
+---
+
+## T0_1: Ziel- und Auftragsklärung (Aufgabe 1)
 
 ```yaml
 # ============================================
@@ -8,52 +12,61 @@
 # ============================================
 TASK_ID: "T0_1_AUFTRAGSKLAERUNG"
 PHASE: "P0_BRIEF"
-TASK_NAME: "Auftragsklärung"
-TASK_TYP: "analyse"
+TASK_NAME: "Ziel- und Auftragsklärung"
+TASK_TYP: "diskussion"
 DAUER_MIN: 0
 
 LERNZIELE:
-  - "Szenario und Auftrag korrekt zusammenfassen"
-  - "Prioritäten setzen"
-  - "Risiken erkennen"
+  - "Die Handlungssituation verstehen"
+  - "Das Ziel der Situation erkennen"
+  - "Gemeinsam klären, was zu tun ist"
 
 ORIENTIERUNGSFILTER: |
-  **Bewertungskriterien:**
-  - C1: Ziele/Constraints erkannt
-  - C2: To-Dos priorisiert
-  - C3: Risiken + Maßnahmen genannt
+  Diese Aufgabe dient der Orientierung und Klärung der Situation.
 
 AUFGABE: |
-  **Situation**
-  In einem Hotel ist eine Tagung von ca. 50 Personen geplant. Es gibt einen 
-  3-Gänge-Lunch, der im Hotelküchenbereich produziert werden soll. Aufgrund 
-  einer Krankmeldung ist der Küchenchef aber nicht verfügbar und du musst 
-  kurzfristig die Aufgaben übernehmen.
+  **Handlungssituation**
   
-  **Gesamtauftrag (Überblick)**
-  1) Warenanforderung ermitteln (Speisen & Getränke)
-  2) Bestand abgleichen und Bestellung bereinigen
-  3) Angebote vergleichen, Lieferant wählen und Entscheidung begründen
+  Die Firma „Love it? Save it!" hat in zwei Wochen im Hotel DOCK 03 einen 
+  Veranstaltungsraum für eine große Tagung gebucht.
+  
+  Alle Abteilungen des Hotels DOCK 03 arbeiten unter Hochdruck an den 
+  Vorbereitungen, um einen reibungslosen Ablauf zu garantieren.
+  
+  Für die Tagung ist ein Mittagslunch in Form eines 3-Gang-Menüs vorgesehen:
+  - Möhrensuppe mit Croutons
+  - Hamburger Pannfisch vom Kabeljau mit Blattspinat und Bratkartoffeln
+  - Rote Grütze mit Vanilleeis
+  
+  Auch hier müssen entsprechende Vorbereitungen getroffen werden. 
+  Vor allem müssen die benötigten Lebensmittel bestellt werden. 
+  
+  **Da der zuständige Koch länger erkrankt ist, seid ihr dafür zuständig.**
 
 EINGABEAUFFORDERUNG: |
-  📝 Schreibe jetzt dein Kurzprotokoll (5–8 Sätze) und danach 
-  3 Bulletpoints: Risiken/To-Dos in Reihenfolge.
+  📝 **Ziel- und Auftragsklärung:**
+  
+  Was ist nun zu tun und wie können wir die neue Situation bewältigen?
 
-ABGABEFORMAT: "Kurzprotokoll (5-8 Sätze) + 3 Bulletpoints"
+ABGABEFORMAT: "Freie Antwort / Diskussion"
 
 # Nach 1. Lösungsversuch ausgeben
-RESOURCES: ["R_TEXT_SITUATION", "R_BRIEF_VERANSTALTER", "R_TEXT_TASKS"]
+RESOURCES: ["R_TEXT_SITUATION"]
 RUBRIK: "RB_T0_1"
 
 SCAFFOLDS:
-  HINT_1: "Markiere im Auftrag alle Ziele und Einschränkungen (Constraints)"
-  HINT_2: "Priorisiere die To-Dos nach Dringlichkeit – was muss zuerst erledigt werden?"
-  HINT_3: "Nenne mindestens 2 Risiken und schlage je eine Gegenmaßnahme vor"
+  HINT_1: "Überlege: Was muss alles organisiert werden?"
+  HINT_2: "Welche Schritte sind nötig, um Lebensmittel zu bestellen?"
+  HINT_3: "Was brauchen wir, bevor wir bestellen können?"
+
+HINWEIS_NACH_ANTWORT: |
+  Gut! Du hast die Situation verstanden. Jetzt geht es darum, den 
+  konkreten Warenbedarf zu ermitteln. Dafür bekommst du gleich die Rezepte.
 ```
 
 ---
 
-## T1_1: Warenanforderung ermitteln
+## T1_1: Warenanforderung ermitteln (Aufgabe 2)
 
 ```yaml
 # ============================================
@@ -78,48 +91,90 @@ ORIENTIERUNGSFILTER: |
   - C3: Einheiten richtig
   - C4: Quelle Möhrensuppe angegeben
 
+# ============================================
+# HIER WERDEN DIE REZEPTE FREIGEGEBEN!
+# ============================================
+
+REZEPT_FREIGABE: |
+  📋 **Hier sind die Rezepte für das 3-Gang-Menü:**
+  
+  ---
+  
+  **🥕 Möhrensuppe mit Croutons**
+  *(Rezept muss recherchiert werden)*
+  
+  💡 Tipp: Du kannst mich bitten, ein Rezept zu recherchieren!
+  Sage: "Recherchiere ein Rezept für Möhrensuppe für 10 Personen"
+  
+  ---
+  
+  **🐟 Hamburger Pannfisch vom Kabeljau** (für 5 Personen)
+  
+  Zutaten:
+  - 500g Kabeljaufilet
+  - 600g Kartoffeln (festkochend)
+  - 200g Blattspinat
+  - 100g Speck
+  - 2 Zwiebeln
+  - 100g Butter
+  - 200ml Sahne
+  - Salz, Pfeffer, Muskat
+  - Senf (körnig)
+  
+  ---
+  
+  **🍓 Hamburger Rote Grütze** (für 10 Personen)
+  
+  Zutaten:
+  - 500g gemischte Beeren (Erdbeeren, Himbeeren, Johannisbeeren)
+  - 200g Zucker
+  - 500ml Wasser
+  - 40g Speisestärke
+  - 1 Päckchen Vanilleeis (pro Person 1 Kugel = 10 Kugeln)
+  
+  ---
+  
+  **🥤 Getränke** (Erfahrungswerte pro Person)
+  - Wasser: 0,5L
+  - Apfelsaft: 0,3L
+  - Kaffee: 2 Tassen
+
 AUFGABE: |
   **Warenanforderung feststellen**
   
-  Im Folgenden sollst du den Warenbedarf (Lebensmittel und Getränke) für die 
-  Tagung im Hotel Dock 03 ermitteln.
+  Im Folgenden sollst du den Warenbedarf (Lebensmittel und Getränke) für 
+  die Tagung im Hotel Dock 03 ermitteln.
   
-  Für die Tagung sollen die folgenden Speisen angeboten werden:
-  - **Möhrensuppe mit Croutons** (Rezept muss recherchiert werden)
-  - **Hamburger Pannfisch** mit Blattspinat und Bratkartoffeln (Rezept für 5 Personen)
-  - **Hamburger Rote Grütze** mit Vanilleeis (Rezept für 10 Personen)
+  **Die Tagung hat ca. 50 Personen.**
   
-  Getränke:
-  - Wasser
-  - Apfelsaft
-  - Kaffee
+  **a) Ermittle die Warenanforderung der Tagung.**
   
-  💡 **Tipp:** Du kannst mich bitten, ein Rezept für die Möhrensuppe zu 
-  recherchieren! Sage einfach: *"Recherchiere ein Rezept für Möhrensuppe"*
-  
-  **a) Ermittle die Warenanforderung der Tagung und fülle die Tabelle aus.**
+  Berechne die benötigten Mengen für alle Zutaten, indem du die Rezepte 
+  auf 50 Personen hochrechnest.
 
 EINGABEAUFFORDERUNG: |
   📝 Gib jetzt deine berechnete Warenanforderung ein (als Liste oder Tabelle) 
-  inkl. Einheiten und nenne deine Quelle für das Möhrensuppe-Rezept.
+  inkl. Einheiten.
+  
+  Wenn du für die Möhrensuppe ein Rezept recherchiert hast, nenne auch die Quelle.
 
 ABGABEFORMAT: "Tabelle/Liste mit Einheiten + Quellenangabe Möhrensuppe"
 
 # Nach 1. Lösungsversuch ausgeben
-RESOURCES: ["R_RECHERCHE_MOEHRENSUPPE", "R_REZEPT_PANNFISCH", "R_REZEPT_ROTEGRUETZE", "R_FUNC_SHEET"]
+RESOURCES: ["R_REZEPT_PANNFISCH", "R_REZEPT_ROTEGRUETZE", "R_RECHERCHE_MOEHRENSUPPE"]
 RUBRIK: "RB_T1_1"
 
 SCAFFOLDS:
-  HINT_1: "Skaliere die Rezepte auf 50 Personen: Pannfisch (5→50) = ×10, Grütze (10→50) = ×5"
+  HINT_1: "Skaliere die Rezepte: Pannfisch (5→50) = ×10, Grütze (10→50) = ×5"
   HINT_2: "Prüfe die Einheiten – verwende kg, g, Liter, Stück einheitlich"
-  HINT_3: "Plausibilitätsprüfung: Sind die Portionsgrößen realistisch für eine Tagung?"
+  HINT_3: "Plausibilitätsprüfung: Sind die Portionsgrößen realistisch?"
 
 RECHERCHE_ERLAUBT: true
 ```
 
 ---
 
-## T2_1: Bestand abgleichen
+## T2_1: Bestand abgleichen (Aufgabe 3)
 
 ```yaml
 # ============================================
@@ -161,7 +216,7 @@ EINGABEAUFFORDERUNG: |
 ABGABEFORMAT: "Bereinigte Bestellliste + Erklärung (3-5 Sätze)"
 
 # Nach 1. Lösungsversuch ausgeben
-RESOURCES: ["R_TEXT_TASKS"]
+RESOURCES: ["R_BESTANDSLISTE"]
 RUBRIK: "RB_T2_1"
 
 SCAFFOLDS:
@@ -172,7 +227,7 @@ SCAFFOLDS:
 
 ---
 
-## T3_1: Angebote vergleichen
+## T3_1: Angebote vergleichen (Aufgabe 4)
 
 ```yaml
 # ============================================
@@ -202,32 +257,29 @@ AUFGABE: |
   Da du die Bestellung bereinigt hast, sollst du nun einen passenden 
   Lieferanten finden.
   
-  **d) Recherchiere mögliche Handelspartner im Raum Hamburg und trage 
-  diese ein.**
+  **d) Recherchiere mögliche Handelspartner im Raum Hamburg.**
   
   **e) Vergleiche Angebote anhand der Kriterien.**
   
   **f) Entscheide dich für einen Lieferanten und begründe deine 
   Entscheidung anhand der Kriterien.**
   
-  💡 **Tipp:** Du kannst mich bitten, Informationen zu Großhändlern im 
-  Raum Hamburg zu recherchieren!
+  💡 Tipp: Du kannst mich bitten, Großhändler in Hamburg zu recherchieren!
 
 EINGABEAUFFORDERUNG: |
-  📝 Gib jetzt deinen Angebotsvergleich (oder die wichtigsten Zahlen/Infos) 
-  ein und formuliere danach deine Lieferantenentscheidung in 8–12 Sätzen 
-  mit Kriterienbezug.
+  📝 Gib jetzt deinen Angebotsvergleich ein und formuliere deine 
+  Lieferantenentscheidung mit Begründung.
 
-ABGABEFORMAT: "Angebotsvergleich + Begründung (8-12 Sätze mit Kriterienbezug)"
+ABGABEFORMAT: "Angebotsvergleich + Begründung"
 
 # Nach 1. Lösungsversuch ausgeben
-RESOURCES: ["R_WORKSHEET_ANGEBOT", "R_CRITERIA_LIEFERANT", "R_PARTNER_BRAINSTORM"]
+RESOURCES: ["R_WORKSHEET_ANGEBOT", "R_CRITERIA_LIEFERANT"]
 RUBRIK: "RB_T3_1"
 
 SCAFFOLDS:
-  HINT_1: "Nutze die Kriterienliste systematisch – gehe Punkt für Punkt durch"
-  HINT_2: "Trenne harte Kriterien (Preis, Lieferzeit) von weichen (Qualität, Service)"
-  HINT_3: "Belege deine Entscheidung mit 2-3 konkreten Zahlen aus der Vergleichstabelle"
+  HINT_1: "Nutze Kriterien wie: Preis, Lieferzeit, Qualität, Mindestbestellwert"
+  HINT_2: "Trenne harte Kriterien (muss erfüllt sein) von weichen (wäre gut)"
+  HINT_3: "Belege deine Entscheidung mit konkreten Zahlen"
 
 RECHERCHE_ERLAUBT: true
 ```
