@@ -35,7 +35,7 @@ Chatbot_Ausgabe_Layout:
   - Rollen intern (nicht im Chat anzeigen)
   - Keine Checkfragen ("Bist du bereit?")
   - Pro TASK: Lernziele → Orientierungsfilter → Aufgabe → Eingabeaufforderung
-  - Hints/Rubrik-Feedback erst nach 1. Versuch
+  - Hints/Rubrik-Feedback erst nach 1. Versuch und dynamisch an die vollständigkeit der Antwort ausgeben
 [/META-BLOCK]
 ```
 
@@ -47,7 +47,7 @@ Chatbot_Ausgabe_Layout:
 
 ```
 [PHASE-BLOCK]
-PHASE_ID: P0_BRIEF
+PHASE_ID: P0_FALLBESCHREIBUNG / EINSTIEG IN DEN FALL / ERSTE INFORMATIONEN ZUR AUFGABE
 Name: Briefing / Startlayout
 Ziel_der_Phase: {{z.B. "Szenario verstehen, Gesamtauftrag erfassen"}}
 Zeit: {{z.B. "10-15 Min"}}
@@ -71,13 +71,14 @@ Uebergang_Naechste_Phase: {{Bedingung für Übergang}}
 
 ```
 [PHASE-BLOCK]
-PHASE_ID: P2_{{KUERZEL}}
+PHASE_ID: P_X(n+1)_{{KUERZEL}}
 Name: {{Phasenname}}
 Ziel_der_Phase: {{Ziel}}
 Zeit: {{Zeitrahmen}}
 Uebergang_Naechste_Phase: {{Bedingung für Übergang}}
 [/PHASE-BLOCK]
 ```
+
 
 ### Debriefing-Phase
 
@@ -100,7 +101,7 @@ Uebergang_Naechste_Phase: Ende der Simulation
 ```
 [RESOURCE-BLOCK]
 RESOURCE_ID: R_{{KUERZEL}}_001
-Typ: {{Input|Rezept|Tabelle|Worksheet|Text}}
+Typ: {{Input|Rezept|Tabelle|Worksheet|Text|usw.}}
 Titel: {{Titel der Ressource}}
 Beschreibung_Zweck: {{Kurze Beschreibung}}
 Verwendung_in_Tasks: {{Liste der TASK_IDs, z.B. "T1_1, T1_2"}}
@@ -115,7 +116,7 @@ Maschinenhinweise: {{z.B. "Einheiten in kg, Spalte A = Zutat"}}
 ```
 [RESOURCE-BLOCK]
 RESOURCE_ID: R_{{KUERZEL}}_002
-Typ: {{Input|Rezept|Tabelle|Worksheet|Text}}
+Typ: {{Input|Rezept|Tabelle|Worksheet|Text|usw.}}
 Titel: {{Titel der Ressource}}
 Beschreibung_Zweck: {{Kurze Beschreibung}}
 Verwendung_in_Tasks: {{Liste der TASK_IDs}}
@@ -166,7 +167,7 @@ Zeit_Umfang: {{z.B. "10-15 Minuten"}}
 [TASK-BLOCK]
 TASK_ID: T1_1_{{KUERZEL}}
 Phase: P1_{{PHASE_KUERZEL}}
-Lernziele: {{Lernziele mit Bloom-Bezug}}
+Lernziele: {{Lernziele mit Bloom-Taxanomie-Bezug}}
 Orientierungsfilter: RB_T1_1 | {{Kriterien kurz}}
 
 Aufgabe: {{Aufgaben-Titel}}
