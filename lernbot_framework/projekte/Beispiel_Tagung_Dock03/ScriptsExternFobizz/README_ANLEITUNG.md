@@ -2,7 +2,7 @@
 
 ## Schritt 1: System-Prompt einfügen
 
-1. Öffne die Datei `SYSTEM_PROMPT_FOBIZZ.md`
+1. Öffne die Datei `SYSTEM_PROMPT_FOBIZZ.md` (oder `.pdf`)
 2. Kopiere den **gesamten Inhalt** (ab der Zeile mit den drei Strichen `---`)
 3. Füge ihn in das System-Prompt-Feld auf Fobizz ein
 
@@ -10,15 +10,28 @@
 
 ## Schritt 2: Dateien anhängen (max. 5)
 
-### Empfohlene Dateien:
+### PDF-Dateien zum Anhängen:
 
-| Nr. | Datei | Beschreibung | Pfad |
-|-----|-------|--------------|------|
-| **1** | 📄 **Aufgabenblatt (PDF)** | Original-Unterrichtsmaterial | `01_material/Vorlage, Aufgabenmaterial und -stoff_ Finaler Teil 1_ Tagung-im-Hotel-Dock-03-Material-1-bis-3c.docx.pdf` |
-| **2** | 📄 **Musterlösung** | Beispiellösungen für Lehrkraft-Modus | `01_material/Musterlösung Aufgabe 1 Tagung_003.docx` |
-| **3** | 📄 **Rezepte** | Pannfisch & Rote Grütze Rezepte | `ScriptsExternFobizz/Rezepte_3Gang_Menu.md` |
-| **4** | 📄 **Rubrics** | Bewertungskriterien | `ScriptsExternFobizz/Bewertungskriterien_Rubrics.md` |
-| **5** | *(optional)* | Bestandsliste, falls vorhanden | - |
+| Nr. | Datei | Beschreibung |
+|-----|-------|--------------|
+| **1** | 📄 **Aufgabenblatt (PDF)** | Original-Unterrichtsmaterial |
+| **2** | 📄 **Musterloesungen_Komplett.pdf** | Alle Musterlösungen, Toleranzen und Kriterien |
+| **3** | 📄 **Rezepte_3Gang_Menu.pdf** | Pannfisch & Rote Grütze Rezepte |
+| **4** | 📄 **Bewertungskriterien_Rubrics.pdf** | Bewertungskriterien/Rubrics |
+
+---
+
+## Aufgaben-Übersicht (6 Aufgaben + Reflexion)
+
+| Nr. | Aufgabe | Beschreibung |
+|-----|---------|--------------|
+| **1** | Ziel- und Auftragsklärung | Was ist zu tun? Planung erstellen |
+| **2** | Warenanforderung | Mengen berechnen für 50 Personen |
+| **3** | Bestand abgleichen | Bestellung bereinigen |
+| **4** | Geschäftliche Anfrage | Brief an Frischfisch Jürgens |
+| **5** | Angebot prüfen | Fehler im Angebot finden |
+| **6** | Lieferantenauswahl | Vergleichen und entscheiden |
+| ✓ | Reflexion | Debriefing & Transfer |
 
 ---
 
@@ -26,30 +39,35 @@
 
 - [ ] System-Prompt eingefügt
 - [ ] Aufgabenblatt (PDF) angehängt
-- [ ] Musterlösung angehängt
-- [ ] Rezepte-Datei angehängt
-- [ ] Rubrics-Datei angehängt
-- [ ] Internetrecherche für den Bot aktiviert (falls verfügbar)
+- [ ] Musterloesungen_Komplett.pdf angehängt
+- [ ] Rezepte_3Gang_Menu.pdf angehängt
+- [ ] Bewertungskriterien_Rubrics.pdf angehängt
+- [ ] Internetrecherche aktiviert (falls verfügbar)
 
 ---
 
 ## Wichtige Hinweise
 
+### 🔄 Zwei-Phasen-Logik
+
+**Phase 0 (Erstausgabe):**
+- Nur Aufgabe + Eingabeaufforderung
+- KEINE Hilfen/Scaffolds
+- KEINE Feedback-Hinweise
+
+**Nach erster Eingabe:**
+- Feedback geben
+- Scaffolds/Hilfen zeigen
+- Zur Überarbeitung auffordern
+- Nach Korrektur → Nächste Aufgabe
+
 ### 🔍 Internetrecherche
-Der Bot soll in der Lage sein, zu recherchieren:
-- **Möhrensuppe-Rezept** (für Aufgabe 2)
-- **Großhändler in Hamburg** (für Aufgabe 4)
-
-Falls Fobizz keine Internetrecherche unterstützt, können Schüler*innen selbst recherchieren und die Ergebnisse eingeben.
-
-### 📝 Ablauf
-1. Bot startet mit Aufgabe 1 (Ziel- und Auftragsklärung)
-2. Nach jeder Aufgabe gibt der Bot Feedback
-3. Rezepte werden erst in Aufgabe 2 freigegeben
-4. Am Ende: Reflexion (Debriefing)
+Der Bot kann recherchieren:
+- **Möhrensuppe-Rezept** (Aufgabe 2)
+- **Großhändler in Hamburg** (Aufgabe 6)
 
 ### ⚠️ Keine Sofortlösungen
-Der Bot ist so konfiguriert, dass er Musterlösungen nur nach echtem Versuch zeigt.
+Musterlösungen werden nur nach echtem Versuch gezeigt!
 
 ---
 
@@ -57,10 +75,15 @@ Der Bot ist so konfiguriert, dass er Musterlösungen nur nach echtem Versuch zei
 
 ```
 ScriptsExternFobizz/
-├── README_ANLEITUNG.md      ← Diese Datei (nicht hochladen)
-├── SYSTEM_PROMPT_FOBIZZ.md  ← System-Prompt für Fobizz
-├── Rezepte_3Gang_Menu.md    ← Datei 3: Anhängen!
-└── Bewertungskriterien_Rubrics.md ← Datei 4: Anhängen!
+├── README_ANLEITUNG.md           ← Diese Datei (NICHT hochladen)
+├── SYSTEM_PROMPT_FOBIZZ.md       ← System-Prompt (Text kopieren)
+├── SYSTEM_PROMPT_FOBIZZ.pdf      ← System-Prompt (PDF-Version)
+├── Musterloesungen_Komplett.md   ← Musterlösungen (MD)
+├── Musterloesungen_Komplett.pdf  ← Datei 2: ANHÄNGEN!
+├── Rezepte_3Gang_Menu.md         ← Rezepte (MD)
+├── Rezepte_3Gang_Menu.pdf        ← Datei 3: ANHÄNGEN!
+├── Bewertungskriterien_Rubrics.md ← Rubrics (MD)
+└── Bewertungskriterien_Rubrics.pdf ← Datei 4: ANHÄNGEN!
 ```
 
 ---
@@ -68,6 +91,7 @@ ScriptsExternFobizz/
 ## Support
 
 Bei Fragen oder Problemen:
-- Prüfe, ob alle 4-5 Dateien korrekt angehängt sind
+- Prüfe, ob alle 4-5 PDFs korrekt angehängt sind
 - Teste mit einer einfachen Eingabe wie "Hallo" oder "Los geht's"
 - Der Bot sollte mit der Handlungssituation (Aufgabe 1) starten
+- Hilfen erscheinen erst NACH der ersten Antwort
